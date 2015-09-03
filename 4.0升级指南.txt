@@ -1,0 +1,13 @@
+1、表Stock加字段Piles、TenThousands，默认值为0。
+2、表StockOutWarehouseDetail加字段Piles、TenThousands，默认值为0。
+3、表StockDaily加字段Piles、TenThousands，默认值为0。
+4、表EnterWarehouseBillGoods加字段Piles、TenThousands，默认值为0。
+5、表OutWarehouseBillGoods加字段Piles、TenThousands，默认值为0。
+6、表ShipmentBillGoods加字段Piles、TenThousands，默认值为0。
+7、表MoveWarehouseBillGoods加字段Piles、TenThousands、NewPiles、NewTenThousands，默认值为0。
+8、所有表中的“罐”改为“罐直发”。
+update CarrierSettlementExpression set PlanType = '罐直发' where PlanType = '罐'
+update CarrierTransportPrice set PlanType = '罐直发' where PlanType = '罐'
+update DeliverPlan set PlanType = '罐直发' where PlanType = '罐'
+update TransportLimitedPrice set PlanType = '罐直发' where PlanType = '罐'
+9、权限组“副总经理”增加“审批发货计划”权限。

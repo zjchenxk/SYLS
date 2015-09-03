@@ -1,0 +1,186 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "需求文档", "需求文档", "{9156BCE2-51AF-47B3-9838-19951C48231A}"
+	ProjectSection(SolutionItems) = preProject
+		业务流程.vsd = 业务流程.vsd
+		仓储力资费统计-查询.vsd = 仓储力资费统计-查询.vsd
+		仓储力资费统计.vsd = 仓储力资费统计.vsd
+		仓库管理.vsd = 仓库管理.vsd
+		修改出仓单.vsd = 修改出仓单.vsd
+		修改调度单.vsd = 修改调度单.vsd
+		修改送货单.vsd = 修改送货单.vsd
+		入库记录查询-条件.vsd = 入库记录查询-条件.vsd
+		入库记录查询.vsd = 入库记录查询.vsd
+		内部录入订单.vsd = 内部录入订单.vsd
+		出库记录查询-条件.vsd = 出库记录查询-条件.vsd
+		出库记录查询.vsd = 出库记录查询.vsd
+		功能框架.vsd = 功能框架.vsd
+		发货管理.vsd = 发货管理.vsd
+		发货管理流程.vsd = 发货管理流程.vsd
+		合同管理.vsd = 合同管理.vsd
+		合同管理流程.vsd = 合同管理流程.vsd
+		外部录入订单.vsd = 外部录入订单.vsd
+		审批合同价格.vsd = 审批合同价格.vsd
+		审核合同.vsd = 审核合同.vsd
+		客户对帐单统计.vsd = 客户对帐单统计.vsd
+		客户对帐单统计查询-条件.vsd = 客户对帐单统计查询-条件.vsd
+		寄库订单查询-条件.vsd = 寄库订单查询-条件.vsd
+		寄库订单查询.vsd = 寄库订单查询.vsd
+		对帐管理.vsd = 对帐管理.vsd
+		录入发票.vsd = 录入发票.vsd
+		录入合同.vsd = 录入合同.vsd
+		录入罐订单.vsd = 录入罐订单.vsd
+		录入通用订单.vsd = 录入通用订单.vsd
+		待发货出仓单.vsd = 待发货出仓单.vsd
+		待审核订单.vsd = 待审核订单.vsd
+		待打印出仓单.vsd = 待打印出仓单.vsd
+		待打印划拨出仓单.vsd = 待打印划拨出仓单.vsd
+		待调度订单.vsd = 待调度订单.vsd
+		待调度订单查询-条件.vsd = 待调度订单查询-条件.vsd
+		打印合同.vsd = 打印合同.vsd
+		打印盘点表.vsd = 打印盘点表.vsd
+		打印送货单.vsd = 打印送货单.vsd
+		扣款.vsd = 扣款.vsd
+		承运单位对帐单统计.vsd = 承运单位对帐单统计.vsd
+		承运单位对帐单统计查询-条件.vsd = 承运单位对帐单统计查询-条件.vsd
+		提交合同.vsd = 提交合同.vsd
+		收发存汇总-查询.vsd = 收发存汇总-查询.vsd
+		收发存汇总.vsd = 收发存汇总.vsd
+		数据统计.vsd = 数据统计.vsd
+		新建调度单-修改订单.vsd = 新建调度单-修改订单.vsd
+		新建调度单-添加订单.vsd = 新建调度单-添加订单.vsd
+		新建调度单.vsd = 新建调度单.vsd
+		新建调度单2.vsd = 新建调度单2.vsd
+		新建调度单3.vsd = 新建调度单3.vsd
+		查看出仓单详细信息.vsd = 查看出仓单详细信息.vsd
+		查看合同详细信息.vsd = 查看合同详细信息.vsd
+		查看待调度订单详细信息.vsd = 查看待调度订单详细信息.vsd
+		查看订单详细信息.vsd = 查看订单详细信息.vsd
+		查看送货单详细信息.vsd = 查看送货单详细信息.vsd
+		查询订单.vsd = 查询订单.vsd
+		核对送货单回单.vsd = 核对送货单回单.vsd
+		核对送货单回单查询-条件.vsd = 核对送货单回单查询-条件.vsd
+		正式订单.vsd = 正式订单.vsd
+		统计总产值.vsd = 统计总产值.vsd
+		统计总产值查询-条件.vsd = 统计总产值查询-条件.vsd
+		罚款处理.vsd = 罚款处理.vsd
+		草稿订单.vsd = 草稿订单.vsd
+		订单管理.vsd = 订单管理.vsd
+		订单管理流程.vsd = 订单管理流程.vsd
+		调度单.vsd = 调度单.vsd
+		调度单2.vsd = 调度单2.vsd
+		调度管理.vsd = 调度管理.vsd
+		调度管理流程.vsd = 调度管理流程.vsd
+		调度订单.vsd = 调度订单.vsd
+		调度订单2.vsd = 调度订单2.vsd
+		货物入库.vsd = 货物入库.vsd
+		货物出库.vsd = 货物出库.vsd
+		货物移库.vsd = 货物移库.vsd
+		选择客户.vsd = 选择客户.vsd
+		选择批次.vsd = 选择批次.vsd
+		选择提货单位.vsd = 选择提货单位.vsd
+		选择驾驶员.vsd = 选择驾驶员.vsd
+		金华盛交货通知单.JPG = 金华盛交货通知单.JPG
+		需求会审20110412.doc = 需求会审20110412.doc
+		需求分析.doc = 需求分析.doc
+		需求补充.doc = 需求补充.doc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据库设计文档", "数据库设计文档", "{9EA7C47F-452B-47AE-B3BC-1A433821B643}"
+	ProjectSection(SolutionItems) = preProject
+		AddSysFunction6_NewDeliverBillCarrierTransportPrice.sql = AddSysFunction6_NewDeliverBillCarrierTransportPrice.sql
+		AddSysFunction6_SearchDeliverBillCarrierTransportPrices.sql = AddSysFunction6_SearchDeliverBillCarrierTransportPrices.sql
+		CreateDatabase.sql = CreateDatabase.sql
+		CreateProcedures.sql = CreateProcedures.sql
+		CreateTable6_DeliverBillCarrierTransportPrice.sql = CreateTable6_DeliverBillCarrierTransportPrice.sql
+		CreateTables.sql = CreateTables.sql
+		InitData.sql = InitData.sql
+		InnoLS.pdm = InnoLS.pdm
+		InnoLS_20140402104418.pdm = InnoLS_20140402104418.pdm
+		InnoLS_20141003.pdm = InnoLS_20141003.pdm
+		InnoLS_20141209.pdm = InnoLS_20141209.pdm
+		InnoLS_20150118.pdm = InnoLS_20150118.pdm
+		MakeStockDaily.sql = MakeStockDaily.sql
+		Messages.sql = Messages.sql
+		UpgradeSysGroupPermission.sql = UpgradeSysGroupPermission.sql
+		UpgradeTables5.sql = UpgradeTables5.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "安装部署文档", "安装部署文档", "{C4D24810-655E-4B79-A3A3-1FD21B991C3C}"
+	ProjectSection(SolutionItems) = preProject
+		4.0升级指南.txt = 4.0升级指南.txt
+		5.0升级指南.txt = 5.0升级指南.txt
+		6.0升级指南.txt = 6.0升级指南.txt
+		十野物流系统安装部署方法.doc = 十野物流系统安装部署方法.doc
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYLS", "SYLS\SYLS.csproj", "{0C856E34-00EC-4112-90B4-B4DF8A7CC65B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE} = {6DB46F71-0E91-4964-9EFE-27101FD5BEEE}
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242} = {F354CCBD-3B95-44B5-846C-4C3690BD7242}
+		{A3D20CDA-2334-4B4C-970A-EE02EA429868} = {A3D20CDA-2334-4B4C-970A-EE02EA429868}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFacades", "BusinessFacades\BusinessFacades.csproj", "{A3D20CDA-2334-4B4C-970A-EE02EA429868}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE} = {6DB46F71-0E91-4964-9EFE-27101FD5BEEE}
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242} = {F354CCBD-3B95-44B5-846C-4C3690BD7242}
+		{1E4525C2-56CC-4689-8E0D-7D13C90A79AF} = {1E4525C2-56CC-4689-8E0D-7D13C90A79AF}
+		{C8E9AAEE-F922-4DE9-996A-1662E5CB6091} = {C8E9AAEE-F922-4DE9-996A-1662E5CB6091}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessRules", "BusinessRules\BusinessRules.csproj", "{C8E9AAEE-F922-4DE9-996A-1662E5CB6091}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE} = {6DB46F71-0E91-4964-9EFE-27101FD5BEEE}
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242} = {F354CCBD-3B95-44B5-846C-4C3690BD7242}
+		{1E4525C2-56CC-4689-8E0D-7D13C90A79AF} = {1E4525C2-56CC-4689-8E0D-7D13C90A79AF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccesses", "DataAccesses\DataAccesses.csproj", "{1E4525C2-56CC-4689-8E0D-7D13C90A79AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE} = {6DB46F71-0E91-4964-9EFE-27101FD5BEEE}
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242} = {F354CCBD-3B95-44B5-846C-4C3690BD7242}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{6DB46F71-0E91-4964-9EFE-27101FD5BEEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{F354CCBD-3B95-44B5-846C-4C3690BD7242}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C856E34-00EC-4112-90B4-B4DF8A7CC65B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C856E34-00EC-4112-90B4-B4DF8A7CC65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C856E34-00EC-4112-90B4-B4DF8A7CC65B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C856E34-00EC-4112-90B4-B4DF8A7CC65B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3D20CDA-2334-4B4C-970A-EE02EA429868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D20CDA-2334-4B4C-970A-EE02EA429868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D20CDA-2334-4B4C-970A-EE02EA429868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D20CDA-2334-4B4C-970A-EE02EA429868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E9AAEE-F922-4DE9-996A-1662E5CB6091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E9AAEE-F922-4DE9-996A-1662E5CB6091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E9AAEE-F922-4DE9-996A-1662E5CB6091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E9AAEE-F922-4DE9-996A-1662E5CB6091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E4525C2-56CC-4689-8E0D-7D13C90A79AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E4525C2-56CC-4689-8E0D-7D13C90A79AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E4525C2-56CC-4689-8E0D-7D13C90A79AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E4525C2-56CC-4689-8E0D-7D13C90A79AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DB46F71-0E91-4964-9EFE-27101FD5BEEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F354CCBD-3B95-44B5-846C-4C3690BD7242}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

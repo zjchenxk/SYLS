@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C856E34-00EC-4112-90B4-B4DF8A7CC65B}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SYLS</RootNamespace>
+    <AssemblyName>SYLS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DeployIisAppPath>Default Web Site/SYLS</DeployIisAppPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=1.2.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\chenxk\chenxkAreaRegistration.cs" />
+    <Compile Include="Areas\chenxk\Controllers\ContractController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\DeliverController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\DispatchController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\FlowController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\PlanController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\SettlementController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\StatisticsController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\StockController.cs" />
+    <Compile Include="Areas\chenxk\Controllers\SystemController.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\AccountPermissionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ApproveContractsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ApproveFlowStepConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ApproveFlowStepViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CanPlanGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CanPlanViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CarrierCarViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CarrierDriverViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CarrierTransportChargesSettlementDetailViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CarrierSettlementExpressionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CarrierTransportChargesSettlementViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CarrierTransportPriceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CarrierViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ContractGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ContractDeliverPlanViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ContractFineViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ContractReverseDetailViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ContractReverseViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ContractViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CustomerForceFeePriceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CustomerStorageAndForceFeeSettlementViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CustomerStorageFeePriceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CustomerTransportPriceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CustomerViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DeliverBillCarrierTransportPriceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DeliverBillCustomerTransportPriceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DeliverBillGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DeliverBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DeliverPlanRemarkViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DispatchBillDeliverPlanViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DispatchBillGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\DispatchBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\EnterOutBalanceSummaryConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\EnterWarehouseBillGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\EnterWarehouseBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\GoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CustomerTransportChargesSettlementDetailViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\CustomerTransportChargesSettlementViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ModifyPasswordViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\MoveWarehouseBillGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\MoveWarehouseBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\OrganizationViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\NoodlePlanGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\NoodlePlanViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\OtherPlanGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\OtherPlanViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\OutWarehouseBillGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\OutWarehouseBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PermissionGroupViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PaperPlanGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PaperPlanViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PositionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PriceApproveFlowStepConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PriceApproveFlowStepViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PrintDeliverBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PrintShipmentBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\PrintStocktakingConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ReceiverDistanceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ReceiverViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ResetPasswordViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchCarrierConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchCarrierTransportChargesSettlementsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchConsigningDeliverPlansConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchContractsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchCustomerConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchDeliverBillCarrierTransportPricesConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchDeliverBillCustomerTransportPricesConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchDeliverBillReceiptsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchDeliverBillsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchDispatchDeliverPlanConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchDeliverPlanConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchEnterWarehouseBillsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchCustomerTransportChargesSettlementsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchGoodsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchMoveWarehouseBillsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchOutWarehouseBillsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchStockEndDifferencesConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchStorageAndForceFeeSettlementsConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SearchTransportLimitedPricesConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ShipmentBillGoodsViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\ShipmentBillViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\StaffViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\StatCarrierStatementConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\StatCustomerStatementConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\StatCustomerTotalOutputConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\StatOrganGrossProfitRateConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\StatStorageAndForceFeeConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\StatOrganTotalOutputConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SyntheticalSearchConditionViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\SyntheticalSearchModifyViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\TransportLimitedPriceViewModel.cs" />
+    <Compile Include="Areas\chenxk\ViewModels\WarehouseViewModel.cs" />
+    <Compile Include="Areas\shancl\Controllers\SystemController.cs" />
+    <Compile Include="Areas\shancl\shanclAreaRegistration.cs" />
+    <Compile Include="Areas\shancl\ViewModels\CityViewModel.cs" />
+    <Compile Include="Areas\shancl\ViewModels\CountryViewModel.cs" />
+    <Compile Include="Areas\shancl\ViewModels\GoodsTypeViewModel.cs" />
+    <Compile Include="Areas\shancl\ViewModels\ProvinceViewModel.cs" />
+    <Compile Include="Controllers\AutocompleteController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogOnController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\EvaluatorHelper.cs" />
+    <Compile Include="Helper\ExtendHelper.cs" />
+    <Compile Include="Helper\ControlHelper.cs" />
+    <Compile Include="Helper\GreaterThanAttribute.cs" />
+    <Compile Include="Helper\GreaterThanOrEqualZeroAttribute.cs" />
+    <Compile Include="Helper\GreaterThanZeroAttribute.cs" />
+    <Compile Include="Helper\NotEqualZeroAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\LogOnViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\chenxk\Views\Contract\ApproveContract.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\ApproveContracts.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\FineContracts.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\ModifyContract.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\ModifyContractGoods.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\NewContract.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\PrintContract.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\PrintContracts.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\ReverseContracts.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\SearchContracts.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\SearchContractsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Contract\SearchFines.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\SearchReverses.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\SubmitContract.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\SubmitContracts.aspx" />
+    <Content Include="Areas\chenxk\Views\Contract\ApproveContractsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Deliver\CanDeliverBill.ascx" />
+    <Content Include="Areas\chenxk\Views\Deliver\CanShipmentBill.ascx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PaperDeliverBill.ascx" />
+    <Content Include="Areas\chenxk\Views\Deliver\ModifyDeliverBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\ModifyShipmentBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PrintAllocateShipmentBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PrintAllocateShipmentBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PrintDeliverBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PrintDeliverBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PrintDispatchedShipmentBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PrintDispatchedShipmentBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\ReceiptDeliverBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\ReprintDeliverBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\ReprintDeliverBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\ReprintShipmentBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\ReprintShipmentBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\SearchDeliverBillReceipts.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\SearchDeliverBillReceiptsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PaperShipmentBill.ascx" />
+    <Content Include="Areas\chenxk\Views\Deliver\PrintShipmentBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\SearchDeliverBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Deliver\SearchDeliverBillsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Deliver\SubmitShipmentBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ComputeCanPlanTransportCharges.ascx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ComputeNoodlePlanTransportCharges.ascx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ComputePaperPlanTransportCharges.ascx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\DispatchCanPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\DispatchNotDeliverCanPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\DispatchDeliverPlans.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\DispatchNoodlePlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\DispatchNotDeliverPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\DispatchOtherPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\DispatchPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ModifyDispatchBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\NewDispatchBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\SearchDispatchDeliverPlanCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\SubmitDispatchBill.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\SubmitDispatchBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ViewDispatchCanPlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ViewDispatchNoodlePlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ViewDispatchOtherPlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ViewDispatchPaperPlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ComputeOtherPlanTransportCharges.ascx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\AddPlanComputeTransportCharges.ascx" />
+    <Content Include="Areas\chenxk\Views\Dispatch\ModifyPlanComputeTransportCharges.ascx" />
+    <Content Include="Areas\chenxk\Views\Flow\ModifyPlanApproveStep.aspx" />
+    <Content Include="Areas\chenxk\Views\Flow\ModifyPriceApproveStep.aspx" />
+    <Content Include="Areas\chenxk\Views\Flow\NewPriceApproveStep.aspx" />
+    <Content Include="Areas\chenxk\Views\Flow\PlanApproveFlowStepCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Flow\NewPlanApproveStep.aspx" />
+    <Content Include="Areas\chenxk\Views\Flow\PriceApproveFlowStepCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Flow\SetPlanApproveFlow.aspx" />
+    <Content Include="Areas\chenxk\Views\Flow\SetPriceApproveFlow.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ApproveDeliverPlans.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ApproveOpinion.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\CanPlanDetails.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\CanPlanGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\CustomerApproveOpinion.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\DeliverPlanRemark.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\ModifyCanPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NewCanPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NotDeliverCanPlanGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\CustomerApprovePaperPlans.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\CustomerNewNotDeliverPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\CustomerNewPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ModifyNotDeliverCanPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ModifyNoodlePlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ModifyNotDeliverPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ModifyOtherPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ModifyPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NewNotDeliverCanPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NewNoodlePlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NewNotDeliverPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NewOtherPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NewPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\NoodlePlanDetails.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\NoodlePlanGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\NotDeliverPaperPlanGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\OtherPlanDetails.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\OtherPlanGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\PaperPlanDetails.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\PaperPlanGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\SearchDeliverPlanCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Plan\SearchDeliverPlans.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\SubmitCanPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\SubmitNoodlePlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\SubmitOtherPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\SubmitPaperPlan.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\SubmitDeliverPlans.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ViewCanPlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ViewNoodlePlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ViewOtherPlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Plan\ViewPaperPlanDetails.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\NewCarrierTransportChargesSettlement.ascx" />
+    <Content Include="Areas\chenxk\Views\Settlement\NewDeliverBillCarrierTransportPrice.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\NewDeliverBillCustomerTransportPrice.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\NewCustomerTransportChargesSettlement.ascx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchCarrierTransportChargesSettlements.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchCarrierTransportChargesSettlementsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchDeliverBillCarrierTransportPrices.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchDeliverBillCarrierTransportPricesCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchDeliverBillCustomerTransportPrices.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchDeliverBillCustomerTransportPricesCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchCustomerTransportChargesSettlements.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\SearchCustomerTransportChargesSettlementsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Settlement\StatCarrierStatement.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\StatCarrierStatementCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Settlement\StatCustomerStatement.aspx" />
+    <Content Include="Areas\chenxk\Views\Settlement\StatCustomerStatementCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Statistics\StatCustomerTotalOutput.aspx" />
+    <Content Include="Areas\chenxk\Views\Statistics\StatCustomerTotalOutputCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Statistics\StatOrganGrossProfitRate.aspx" />
+    <Content Include="Areas\chenxk\Views\Statistics\StatOrganGrossProfitRateCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Statistics\StatOrganTotalOutput.aspx" />
+    <Content Include="Areas\chenxk\Views\Statistics\StatOrganTotalOutputCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Statistics\SyntheticalSearch.aspx" />
+    <Content Include="Areas\chenxk\Views\Statistics\SyntheticalSearchCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Statistics\SyntheticalSearchModify.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\EnterOutBalanceSummary.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\EnterOutBalanceSummaryCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\EnterStockEndDifferences.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\EnterWarehouse.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\EnterWarehouseBillGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\MoveWarehouse.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\NewCustomerStorageAndForceFeeSettlement.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\OutStockEndDifferences.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\OutStockEndDifferencesGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\OutWarehouse.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\OutWarehouseBillGoods.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\PrintStocktaking.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\PrintStocktakingCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchConsigningDeliverPlans.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchConsigningDeliverPlansCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchEnterWarehouseBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchEnterWarehouseBillsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchMoveWarehouseBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchMoveWarehouseBillsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchOutWarehouseBills.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchOutWarehouseBillsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchStockEndDifferences.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchStockEndDifferencesCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchStorageAndForceFeeSettlements.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\SearchStorageAndForceFeeSettlementsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\Stock\StatStorageAndForceFee.aspx" />
+    <Content Include="Areas\chenxk\Views\Stock\StatStorageAndForceFeeCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\System\AssignPermissions.aspx" />
+    <Content Include="Areas\chenxk\Views\System\CarrierCar.ascx" />
+    <Content Include="Areas\chenxk\Views\System\CarrierDriver.ascx" />
+    <Content Include="Areas\chenxk\Views\System\CarrierSettlementExpression.ascx" />
+    <Content Include="Areas\chenxk\Views\System\CarrierTransportPrice.ascx" />
+    <Content Include="Areas\chenxk\Views\System\CustomerForceFeePrice.ascx" />
+    <Content Include="Areas\chenxk\Views\System\CustomerStorageFeePrice.ascx" />
+    <Content Include="Areas\chenxk\Views\System\CustomerTransportPrice.ascx" />
+    <Content Include="Areas\chenxk\Views\System\ImportCustomers.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ImportGoods.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyAccount.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyCarrier.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyCustomer.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyGoods.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyOrganization.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyPassword.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyPermissionGroup.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyPosition.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyReceiver.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyStaff.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyTransportLimitedPrice.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ModifyWarehouse.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewAccount.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewCarrier.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewCustomer.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewGoods.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewOrganization.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewPermissionGroup.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewPosition.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewReceiver.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewStaff.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewTransportLimitedPrice.aspx" />
+    <Content Include="Areas\chenxk\Views\System\NewWarehouse.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ReceiverDistance.ascx" />
+    <Content Include="Areas\chenxk\Views\System\ResetPassword.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SearchCarrierCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\System\SearchCustomerCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\System\SearchGoodsCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\System\SearchTransportLimitedPricesCondition.ascx" />
+    <Content Include="Areas\chenxk\Views\System\SetAccount.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetCarrier.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetCustomer.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetGoods.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetOrganization.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetPermissionGroup.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetPosition.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetReceiver.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetStaff.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetTransportLimitedPrice.aspx" />
+    <Content Include="Areas\chenxk\Views\System\SetWarehouse.aspx" />
+    <Content Include="Areas\chenxk\Views\System\ViewStaffDetails.aspx" />
+    <Content Include="Areas\shancl\Views\System\ModifyCity.aspx" />
+    <Content Include="Areas\shancl\Views\System\ModifyCountry.aspx" />
+    <Content Include="Areas\shancl\Views\System\ModifyGoodsType.aspx" />
+    <Content Include="Areas\shancl\Views\System\ModifyProvince.aspx" />
+    <Content Include="Areas\shancl\Views\System\NewCity.aspx" />
+    <Content Include="Areas\shancl\Views\System\NewCountry.aspx" />
+    <Content Include="Areas\shancl\Views\System\NewGoodsType.aspx" />
+    <Content Include="Areas\shancl\Views\System\NewProvince.aspx" />
+    <Content Include="Areas\shancl\Views\System\SetCity.aspx" />
+    <Content Include="Areas\shancl\Views\System\SetCountry.aspx" />
+    <Content Include="Areas\shancl\Views\System\SetGoodsType.aspx" />
+    <Content Include="Areas\shancl\Views\System\SetProvince.aspx" />
+    <Content Include="AttachFiles\install_lodop.exe" />
+    <Content Include="Content\busy.gif" />
+    <Content Include="Content\ellipsis-xbl.xml" />
+    <Content Include="Content\Images\001.png" />
+    <Content Include="Content\Images\002.png" />
+    <Content Include="Content\Images\003.png" />
+    <Content Include="Content\Images\004.png" />
+    <Content Include="Content\Images\005.png" />
+    <Content Include="Content\Images\006.png" />
+    <Content Include="Content\Images\007.png" />
+    <Content Include="Content\Images\008.png" />
+    <Content Include="Content\Images\009.png" />
+    <Content Include="Content\Images\010.png" />
+    <Content Include="Content\Images\011.png" />
+    <Content Include="Content\Images\012.png" />
+    <Content Include="Content\Images\013.png" />
+    <Content Include="Content\Images\014.png" />
+    <Content Include="Content\Images\015.png" />
+    <Content Include="Content\Images\016.png" />
+    <Content Include="Content\Images\017.png" />
+    <Content Include="Content\Images\018.png" />
+    <Content Include="Content\Images\019.png" />
+    <Content Include="Content\Images\020.png" />
+    <Content Include="Content\Images\021.png" />
+    <Content Include="Content\Images\022.png" />
+    <Content Include="Content\Images\023.png" />
+    <Content Include="Content\Images\024.png" />
+    <Content Include="Content\Images\025.png" />
+    <Content Include="Content\Images\026.png" />
+    <Content Include="Content\Images\027.jpg" />
+    <Content Include="Content\Images\028.png" />
+    <Content Include="Content\Images\029.png" />
+    <Content Include="Content\Images\030.png" />
+    <Content Include="Content\Images\031.png" />
+    <Content Include="Content\Images\032.png" />
+    <Content Include="Content\Images\033.png" />
+    <Content Include="Content\Images\034.png" />
+    <Content Include="Content\Images\035.png" />
+    <Content Include="Content\Images\036.png" />
+    <Content Include="Content\Images\037.png" />
+    <Content Include="Content\Images\038.png" />
+    <Content Include="Content\Images\039.png" />
+    <Content Include="Content\Images\040.png" />
+    <Content Include="Content\Images\041.png" />
+    <Content Include="Content\Images\042.png" />
+    <Content Include="Content\Images\043.png" />
+    <Content Include="Content\Images\044.png" />
+    <Content Include="Content\Images\045.png" />
+    <Content Include="Content\Images\046.png" />
+    <Content Include="Content\Images\047.png" />
+    <Content Include="Content\Images\048.png" />
+    <Content Include="Content\Images\049.png" />
+    <Content Include="Content\Images\050.png" />
+    <Content Include="Content\Images\051.png" />
+    <Content Include="Content\Images\052.png" />
+    <Content Include="Content\Images\053.png" />
+    <Content Include="Content\Images\054.png" />
+    <Content Include="Content\Images\055.png" />
+    <Content Include="Content\Images\056.png" />
+    <Content Include="Content\Images\057.png" />
+    <Content Include="Content\Images\058.png" />
+    <Content Include="Content\Images\059.png" />
+    <Content Include="Content\Images\060.png" />
+    <Content Include="Content\Images\062.png" />
+    <Content Include="Content\Images\063.png" />
+    <Content Include="Content\Images\064.png" />
+    <Content Include="Content\Images\065.png" />
+    <Content Include="Content\Images\066.png" />
+    <Content Include="Content\Images\067.png" />
+    <Content Include="Content\Images\068.png" />
+    <Content Include="Content\Images\069.png" />
+    <Content Include="Content\Images\070.png" />
+    <Content Include="Content\Images\071.png" />
+    <Content Include="Content\Images\072.png" />
+    <Content Include="Content\Images\061.png" />
+    <Content Include="Content\Images\073.png" />
+    <Content Include="Content\Images\074.png" />
+    <Content Include="Content\Images\075.png" />
+    <Content Include="Content\Images\076.png" />
+    <Content Include="Content\Images\077.png" />
+    <Content Include="Content\Images\078.png" />
+    <Content Include="Content\Images\079.png" />
+    <Content Include="Content\Images\080.png" />
+    <Content Include="Content\Images\081.png" />
+    <Content Include="Content\Images\082.png" />
+    <Content Include="Content\Images\083.png" />
+    <Content Include="Content\Images\084.png" />
+    <Content Include="Content\Images\085.png" />
+    <Content Include="Content\Images\086.gif" />
+    <Content Include="Content\Images\086.png" />
+    <Content Include="Content\Images\087.png" />
+    <Content Include="Content\Images\088.png" />
+    <Content Include="Content\Images\089.png" />
+    <Content Include="Content\Images\090.png" />
+    <Content Include="Content\jquery.jOrgChart.css" />
+    <Content Include="Content\jTip\images\arrow_left.gif" />
+    <Content Include="Content\jTip\images\arrow_right.gif" />
+    <Content Include="Content\jTip\images\loader.gif" />
+    <Content Include="Content\jTip\jTip.css" />
+    <Content Include="Content\redmond\images\ui-anim_basic_16x16.gif" />
+    <Content Include="Content\redmond\images\ui-bg_flat_55_999999_40x100.png" />
+    <Content Include="Content\redmond\images\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <Content Include="Content\redmond\images\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="Content\redmond\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Content\redmond\images\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="Content\redmond\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Content\redmond\images\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="Content\redmond\images\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="Content\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\redmond\images\ui-icons_0078ae_256x240.png" />
+    <Content Include="Content\redmond\images\ui-icons_056b93_256x240.png" />
+    <Content Include="Content\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\redmond\images\ui-icons_e0fdff_256x240.png" />
+    <Content Include="Content\redmond\images\ui-icons_f5e175_256x240.png" />
+    <Content Include="Content\redmond\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Content\redmond\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Content\redmond\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Content\ui.jqgrid.css" />
+    <Content Include="Content\ui.multiselect.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\InnoLS.css" />
+    <Content Include="Ionic.Zip.dll" />
+    <Content Include="NPOI.dll" />
+    <Content Include="Scripts\Date.js" />
+    <Content Include="Scripts\Evaluator.js" />
+    <Content Include="Scripts\GreaterThanOrEqualZeroValidation.js" />
+    <Content Include="Scripts\GreaterThanZeroValidation.js" />
+    <Content Include="Scripts\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\GreaterThanValidation.js" />
+    <Content Include="Scripts\i18n\jquery.ui.datepicker-zh-CN.js" />
+    <Content Include="Scripts\InnoLS.js" />
+    <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.2.js" />
+    <Content Include="Scripts\jquery-1.6.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.jOrgChart.js" />
+    <Content Include="Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\jquery.json-2.2.min.js" />
+    <Content Include="Scripts\jquery.PrintArea.js" />
+    <Content Include="Scripts\jquery.scrollbarWidth.js" />
+    <Content Include="Scripts\jstorage.js" />
+    <Content Include="Scripts\jtip.js" />
+    <Content Include="Scripts\LodopFuncs.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\NotEqualZeroValidation.js" />
+    <Content Include="Scripts\src\css\ellipsis-xbl.xml" />
+    <Content Include="Scripts\src\css\ui.jqgrid.css" />
+    <Content Include="Scripts\src\css\ui.multiselect.css" />
+    <Content Include="Scripts\src\grid.base.js" />
+    <Content Include="Scripts\src\grid.celledit.js" />
+    <Content Include="Scripts\src\grid.common.js" />
+    <Content Include="Scripts\src\grid.custom.js" />
+    <Content Include="Scripts\src\grid.filter.js" />
+    <Content Include="Scripts\src\grid.formedit.js" />
+    <Content Include="Scripts\src\grid.grouping.js" />
+    <Content Include="Scripts\src\grid.import.js" />
+    <Content Include="Scripts\src\grid.inlinedit.js" />
+    <Content Include="Scripts\src\grid.jqueryui.js" />
+    <Content Include="Scripts\src\grid.loader.js" />
+    <Content Include="Scripts\src\grid.subgrid.js" />
+    <Content Include="Scripts\src\grid.tbltogrid.js" />
+    <Content Include="Scripts\src\grid.treegrid.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\src\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\src\jqDnR.js" />
+    <Content Include="Scripts\src\jqModal.js" />
+    <Content Include="Scripts\src\jquery.fmatter.js" />
+    <Content Include="Scripts\src\JsonXml.js" />
+    <Content Include="Scripts\Stack.js" />
+    <Content Include="Scripts\Tokanizer.js" />
+    <Content Include="Scripts\ui.multiselect.js" />
+    <Content Include="Views\Help\SettlementExpression.aspx" />
+    <Content Include="Views\Help\TransportChargeExpression.aspx" />
+    <Content Include="Views\Help\TransportPriceExpression.aspx" />
+    <Content Include="Views\Home\Main.aspx" />
+    <Content Include="Views\LogOn\Index.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\Error.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Workspace.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Main.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\chenxk\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\shancl\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AttachFiles\ImportGoodsExample.xls" />
+    <None Include="Properties\PublishProfiles\发布1.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AttachFiles\ImportCustomersExample.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessFacades\BusinessFacades.csproj">
+      <Project>{A3D20CDA-2334-4B4C-970A-EE02EA429868}</Project>
+      <Name>BusinessFacades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{6DB46F71-0E91-4964-9EFE-27101FD5BEEE}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{F354CCBD-3B95-44B5-846C-4C3690BD7242}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>11194</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

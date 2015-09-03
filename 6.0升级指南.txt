@@ -1,0 +1,18 @@
+1、执行添加综合查询功能SQL语句。(ok)
+2、修改综合查询权限。(ok)
+3、出仓单表中添加PlanId索引。(ok)
+4、送货单表中添加PlanId索引。(ok)
+5、出库单表中添加PlanId索引。(ok)
+6、表CustomerTransportPrice中EndTime字段后添加CarType nvarchar(10)字段，不为空。(ok)
+7、表Contract中FineTime字段后添加IsPrestowage bit字段，不为空，默认值为1。(ok)
+8、执行创建特殊承运价格表CreateTable6_DeliverBillCarrierTransportPrice.sql。(ok)
+9、执行添加录入特殊承运价格功能AddSysFunction6_NewDeliverBillCarrierTransportPrice.sql。(ok)
+10、执行查询特殊承运价格记录功能AddSysFunction6_SearchDeliverBillCarrierTransportPrices.sql。(ok)
+11、为合同表Contract的字段DispatchBillId建立唯一索引。(ok)
+12、在表TransportLimitedPrice中字段TransportPrice后，添加字段TransportCharges numeric(25,9)，不为空，默认值为0。(ok)
+13、执行以下语句：(ok)
+update TransportLimitedPrice set TransportCharges = TransportPrice where PlanType='方便面'
+update TransportLimitedPrice set TransportPrice = 0 where PlanType='方便面'
+select * from TransportLimitedPrice where PlanType='方便面'
+14、重新生成存储过程CreateProcedures.sql。
+15、重新生成自定义消息Messages.sql。

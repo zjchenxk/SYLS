@@ -1,0 +1,1990 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="<%: Url.Content("~/Content/InnoLS.css") %>" rel="stylesheet" type="text/css" />
+    <link href="<%: Url.Content("~/Content/redmond/jquery-ui-1.8.16.custom.css") %>"
+        media="screen" rel="stylesheet" type="text/css" />
+    <link href="<%: Url.Content("~/Content/ui.jqgrid.css") %>" media="screen" rel="stylesheet"
+        type="text/css" />
+    <link href="<%: Url.Content("~/Content/ui.multiselect.css") %>" media="screen" rel="stylesheet"
+        type="text/css" />
+    <link href="<%: Url.Content("~/Content/jTip/jTip.css") %>" media="screen" rel="stylesheet"
+        type="text/css" />
+    <link href="<%: Url.Content("~/Content/jquery.jOrgChart.css") %>" media="screen" rel="stylesheet"
+        type="text/css" />
+    <script src="<%: Url.Content("~/Scripts/jquery-1.6.2.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.form.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.validate.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js") %>"
+        type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery-ui-1.8.16.custom.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.blockUI.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.json-2.2.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jstorage.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/i18n/grid.locale-cn.js") %>" type="text/javascript"></script>
+    <script type="text/javascript">
+        $.jgrid.no_legacy_api = true;
+        $.jgrid.useJSON = true;
+    </script>
+    <script src="<%: Url.Content("~/Scripts/ui.multiselect.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.jqGrid.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/src/jqModal.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/src/jqDnR.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/src/grid.celledit.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/src/grid.treegrid.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/src/grid.custom.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/src/grid.grouping.js") %>" type="text/javascript"></script>
+    <%= "<!--" %><script type="text/javascript" src="../../Scripts/jquery-1.6.2-vsdoc.js"></script><%= "-->" %>
+    <%= "<!--" %><script type="text/javascript" src="../../Scripts/jquery.validate-vsdoc.js"></script><%= "-->" %>
+    <script src="<%: Url.Content("~/Scripts/GreaterThanValidation.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/GreaterThanZeroValidation.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/GreaterThanOrEqualZeroValidation.js") %>"
+        type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/NotEqualZeroValidation.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/i18n/jquery.ui.datepicker-zh-CN.js") %>"
+        type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/InnoLS.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jtip.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Date.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Stack.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Tokanizer.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/Evaluator.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.scrollbarWidth.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/LodopFuncs.js") %>" type="text/javascript"></script>
+    <script src="<%: Url.Content("~/Scripts/jquery.jOrgChart.js") %>" type="text/javascript"></script>
+    <style type="text/css">
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto; /* prevent horizontal scrollbar */
+            overflow-x: hidden; /* add padding to account for vertical scrollbar */
+            padding-right: 20px;
+        }
+        /* IE 6 doesn't support max-height, we use height instead, but this forces the menu to always be this tall	 */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+        .ui-autocomplete-loading {
+            background: white url('/Content/redmond/images/ui-anim_basic_16x16.gif') right center no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+
+        //主框架对象
+        function MainFrame() {
+            //工作区对象
+            this.objWorkspace = null;
+            //布局调整完成标志
+            this.resized = true;
+            //调整主框架布局
+            this.resizeMain = function () {
+                if (!this.resized) {
+                    return;
+                }
+                this.resized = false;
+
+                //调整Accordion菜单
+                $("#accordionBar").css("top", ($("#Header").height() + 8) + "px");
+                $("#accordionBar").css("left", "8px");
+                $("#accordionBar").css("height", ($(window).height() - $("#Header").height() - 8 - 5 - 5 - 8) + "px");
+
+                $("#accordionBar").css("display", "block");
+
+                $("#accordion").accordion("resize");
+
+                //调整主视口
+                $("#divMain").css("top", ($("#Header").height() + 8) + "px");
+                $("#divMain").css("left", (8 + 1 + 5 + $("#accordionBar").width() + 5 + 1 + 8) + "px");
+                $("#divMain").css("height", ($(window).height() - $("#Header").height() - 8 - 5 - 5 - 8) + "px");
+                $("#divMain").css("width", ($(window).width() - 8 - 1 - 5 - $("#accordionBar").width() - 5 - 1 - 8 - 5 - 5 - 8) + "px");
+
+                $("#divMain").css("display", "block");
+
+                //调整主工作区
+                if (this.objWorkspace != null) {
+                    this.objWorkspace.resizeWorkspace();
+                }
+                this.resized = true;
+            };
+            //设置输入焦点
+            this.setFocus = function () {
+                if (this.objWorkspace != null) {
+                    this.objWorkspace.setFocus();
+                }
+            };
+            //#region 计划管理
+            ////////////////////////////////////////////////////////////////////////////////////
+            //录入纸发货计划
+            this.newPaperPlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //客户录入纸发货计划
+            this.customerNewPaperPlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //录入纸直发货计划
+            this.newNotDeliverPaperPlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1021, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //客户录入纸直发货计划
+            this.customerNewNotDeliverPaperPlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1022, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //录入罐发货计划
+            this.newCanPlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1028, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //录入罐直发货计划
+            this.newNotDeliverCanPlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1030, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //录入方便面发货计划
+            this.newNoodlePlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1040, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //录入其它发货计划
+            this.newOtherPlan = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1041, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //提交计划
+            this.submitDeliverPlans = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1050, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //客户审核纸发货计划
+            this.customerApprovePaperPlans = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1060, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //审批纸发货计划
+            this.approveDeliverPlans = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1061, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询计划
+            this.searchDeliverPlans = function (action) {
+                $.jStorage.set("SearchPlanCondition_StartTime", "");
+                $.jStorage.set("SearchPlanCondition_EndTime", "");
+                $.jStorage.set("SearchPlanCondition_PlanNo", "");
+                $.jStorage.set("SearchPlanCondition_CustomerName", "");
+                $.jStorage.set("SearchPlanCondition_ShipmentNo", "");
+                $.jStorage.set("SearchPlanCondition_DeliveryNo", "");
+                $.jStorage.set("SearchPlanCondition_DeliverType", "");
+                $.jStorage.set("SearchPlanCondition_ReceiverName", "");
+                $.jStorage.set("SearchPlanCondition_StartCountry", "");
+                $.jStorage.set("SearchPlanCondition_StartProvince", "");
+                $.jStorage.set("SearchPlanCondition_StartCity", "");
+                $.jStorage.set("SearchPlanCondition_DestCountry", "");
+                $.jStorage.set("SearchPlanCondition_DestProvince", "");
+                $.jStorage.set("SearchPlanCondition_DestCity", "");
+                $.jStorage.set("SearchPlanCondition_CarNo", "");
+                $.jStorage.set("SearchPlanCondition_GoodsNo", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 1070, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //#endregion
+            //#region 调度管理
+            ////////////////////////////////////////////////////////////////////////////////////
+            //调度计划
+            this.dispatchDeliverPlans = function (action) {
+                $.jStorage.set("SearchDispatchPlanCondition_OrganId", "");
+                $.jStorage.set("SearchDispatchPlanCondition_CustomerName", "");
+                $.jStorage.set("SearchDispatchPlanCondition_ShipmentNo", "");
+                $.jStorage.set("SearchDispatchPlanCondition_DeliveryNo", "");
+                $.jStorage.set("SearchDispatchPlanCondition_ReceiverName", "");
+                $.jStorage.set("SearchDispatchPlanCondition_DestCountry", "");
+                $.jStorage.set("SearchDispatchPlanCondition_DestProvince", "");
+                $.jStorage.set("SearchDispatchPlanCondition_DestCity", "");
+                $.jStorage.set("SearchDispatchPlanCondition_Warehouse", "");
+                $.jStorage.set("SearchDispatchPlanCondition_ArrivalTime", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 2010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //提交调度单
+            this.submitDispatchBills = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 2020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //#endregion
+            //#region 发货管理
+            ////////////////////////////////////////////////////////////////////////////////////
+            //打印调度出仓单
+            this.printDispatchedShipmentBills = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //打印划拨出仓单
+            this.printAllocateShipmentBills = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //提交出仓单
+            this.submitShipmentBills = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3030, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //打印送货单
+            this.printDeliverBills = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3040, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询送货单
+            this.searchDeliverBills = function (action) {
+                $.jStorage.set("SearchDeliverBillsCondition_StartTime", "");
+                $.jStorage.set("SearchDeliverBillsCondition_EndTime", "");
+                $.jStorage.set("SearchDeliverBillsCondition_CustomerName", "");
+                $.jStorage.set("SearchDeliverBillsCondition_DeliveryNo", "");
+                $.jStorage.set("SearchDeliverBillsCondition_CarNo", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3045, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //接收送货单回单
+            this.receiptDeliverBills = function (action) {
+                $.jStorage.set("ReceiptDeliverBillsCondition_StartTime", "");
+                $.jStorage.set("ReceiptDeliverBillsCondition_EndTime", "");
+                $.jStorage.set("ReceiptDeliverBillsCondition_CustomerName", "");
+                $.jStorage.set("ReceiptDeliverBillsCondition_CarNo", "");
+                $.jStorage.set("ReceiptDeliverBillsCondition_DeliveryNo", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3050, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询送货单回单
+            this.searchDeliverBillReceipts = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3060, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //补打出仓单
+            this.reprintShipmentBills = function (action) {
+                $.jStorage.set("ReprintShipmentBillsCondition_StartTime", "");
+                $.jStorage.set("ReprintShipmentBillsCondition_EndTime", "");
+                $.jStorage.set("ReprintShipmentBillsCondition_ShipmentBillNo", "");
+                $.jStorage.set("ReprintShipmentBillsCondition_CustomerName", "");
+                $.jStorage.set("ReprintShipmentBillsCondition_CarNo", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3070, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //补打送货单
+            this.reprintDeliverBills = function (action) {
+                $.jStorage.set("ReprintDeliverBillsCondition_StartTime", "");
+                $.jStorage.set("ReprintDeliverBillsCondition_EndTime", "");
+                $.jStorage.set("ReprintDeliverBillsCondition_DeliverBillNo", "");
+                $.jStorage.set("ReprintDeliverBillsCondition_CustomerName", "");
+                $.jStorage.set("ReprintDeliverBillsCondition_CarNo", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 3080, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //#endregion
+            //#region 合同管理
+            ////////////////////////////////////////////////////////////////////////////////////
+            //录入合同
+            this.newContract = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //提交合同
+            this.submitContracts = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //打印合同
+            this.printContracts = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4030, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //审批合同
+            this.approveContracts = function (action) {
+                $.jStorage.set("ApproveContracts_StartTime", "");
+                $.jStorage.set("ApproveContracts_EndTime", "");
+                $.jStorage.set("ApproveContracts_ContractNo", "");
+                $.jStorage.set("ApproveContracts_OriginalContractNo", "");
+                $.jStorage.set("ApproveContracts_DestCountry", "");
+                $.jStorage.set("ApproveContracts_DestProvince", "");
+                $.jStorage.set("ApproveContracts_DestCity", "");
+                $.jStorage.set("ApproveContracts_CarNo", "");
+                $.jStorage.set("ApproveContracts_OrganId", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4040, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //冲帐处理
+            this.reverseContract = function (action) {
+                $.jStorage.set("SearchReverseContractsCondition_StartTime", "");
+                $.jStorage.set("SearchReverseContractsCondition_EndTime", "");
+                $.jStorage.set("SearchReverseContractsCondition_ContractNo", "");
+                $.jStorage.set("SearchReverseContractsCondition_OriginalContractNo", "");
+                $.jStorage.set("SearchReverseContractsCondition_CarrierName", "");
+                $.jStorage.set("SearchReverseContractsCondition_CarNo", "");
+                $.jStorage.set("SearchReverseContractsCondition_OrganId", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4050, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询冲帐记录
+            this.searchReverses = function (action) {
+                $.jStorage.set("SearchContractReversesCondition_StartTime", "");
+                $.jStorage.set("SearchContractReversesCondition_EndTime", "");
+                $.jStorage.set("SearchContractReversesCondition_ContractNo", "");
+                $.jStorage.set("SearchContractReversesCondition_OriginalContractNo", "");
+                $.jStorage.set("SearchContractReversesCondition_ReverserId", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4051, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //罚款处理
+            this.fineContracts = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4060, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询罚款记录
+            this.searchFines = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4070, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            }
+            //查询合同
+            this.searchContracts = function (action) {
+                $.jStorage.set("SearchContractsCondition_StartTime", "");
+                $.jStorage.set("SearchContractsCondition_EndTime", "");
+                $.jStorage.set("SearchContractsCondition_ContractNo", "");
+                $.jStorage.set("SearchContractsCondition_OriginalContractNo", "");
+                $.jStorage.set("SearchContractsCondition_StartCountry", "");
+                $.jStorage.set("SearchContractsCondition_StartProvince", "");
+                $.jStorage.set("SearchContractsCondition_StartCity", "");
+                $.jStorage.set("SearchContractsCondition_DestCountry", "");
+                $.jStorage.set("SearchContractsCondition_DestProvince", "");
+                $.jStorage.set("SearchContractsCondition_DestCity", "");
+                $.jStorage.set("SearchContractsCondition_CarNo", "");
+                $.jStorage.set("SearchContractsCondition_OrganId", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 4080, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            }
+            //#endregion
+            //#region 库存管理
+            ////////////////////////////////////////////////////////////////////////////////////
+            //货物入库
+            this.enterWarehouse = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //货物出库
+            this.outWarehouse = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5011, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //货物移库
+            this.moveWarehouse = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询入库记录
+            this.searchEnterWarehouseBills = function (action) {
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_StartTime", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_EndTime", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_CustomerName", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_DeliveryNo", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_EnterWarehouseBillNo", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_GoodsNo", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_GoodsName", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_SpecModel", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_BatchNo", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_EnterType", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_Warehouse", "");
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_IsConsigning", false);
+                $.jStorage.set("SearchEnterWarehouseBillsCondition_HasDrayage", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5030, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询出库记录
+            this.searchOutWarehouseBills = function (action) {
+                $.jStorage.set("SearchOutWarehouseBillsCondition_StartTime", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_EndTime", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_CustomerName", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_DeliveryNo", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_OutWarehouseBillNo", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_GoodsNo", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_BatchNo", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_CarNo", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_ReceiverName", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_OutType", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_Warehouse", "");
+                $.jStorage.set("SearchOutWarehouseBillsCondition_ReceiveType", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5040, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询移库记录
+            this.searchMoveWarehouseBills = function (action) {
+                $.jStorage.set("SearchMoveWarehouseBillsCondition_StartTime", "");
+                $.jStorage.set("SearchMoveWarehouseBillsCondition_EndTime", "");
+                $.jStorage.set("SearchMoveWarehouseBillsCondition_CustomerName", "");
+                $.jStorage.set("SearchMoveWarehouseBillsCondition_MoveWarehouseBillNo", "");
+                $.jStorage.set("SearchMoveWarehouseBillsCondition_GoodsNo", "");
+                $.jStorage.set("SearchMoveWarehouseBillsCondition_Warehouse", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5041, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //汇总收发存
+            this.enterOutBalanceSummary = function (action) {
+                $.jStorage.set("EnterOutBalanceSummaryCondition_StartTime", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_EndTime", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_CustomerName", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_DeliveryNo", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_EnterWarehouseBillNo", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_GoodsNo", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_BatchNo", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_Warehouse", "");
+                $.jStorage.set("EnterOutBalanceSummaryCondition_IsConsigning", false);
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5050, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //统计仓储力支费
+            this.statStorageAndForceFee = function (action) {
+                $.jStorage.set("StatStorageAndForceFeeCondition_StartTime", "");
+                $.jStorage.set("StatStorageAndForceFeeCondition_EndTime", "");
+                $.jStorage.set("StatStorageAndForceFeeCondition_CustomerName", "");
+                $.jStorage.set("StatStorageAndForceFeeCondition_Warehouse", "");
+                $.jStorage.set("StatStorageAndForceFeeCondition_IsConsigning", false);
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5060, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询仓储力支费结算记录
+            this.searchStorageAndForceFeeSettlements = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5061, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询寄库计划
+            this.searchConsigningDeliverPlans = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5070, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //打印盘点表
+            this.printStocktaking = function (action) {
+                $.jStorage.set("PrintStocktakingCondition_Warehouse", "");
+                $.jStorage.set("PrintStocktakingCondition_Location", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5080, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询库存尾差
+            this.searchStockEndDifferences = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5090, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //尾差入库
+            this.enterStockEndDifferences = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5100, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //尾差出库
+            this.outStockEndDifferences = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 5110, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //#endregion
+            //#region 对帐管理
+            ////////////////////////////////////////////////////////////////////////////////////
+            //统计客户对帐单
+            this.statCustomerStatement = function (action) {
+                $.jStorage.set("StatCustomerStatement_StartTime", "");
+                $.jStorage.set("StatCustomerStatement_EndTime", "");
+                $.jStorage.set("StatCustomerStatement_PayerName", "");
+                $.jStorage.set("StatCustomerStatement_ReceiverName", "");
+                $.jStorage.set("StatCustomerStatement_StartCountry", "");
+                $.jStorage.set("StatCustomerStatement_StartProvince", "");
+                $.jStorage.set("StatCustomerStatement_StartCity", "");
+                $.jStorage.set("StatCustomerStatement_DestCountry", "");
+                $.jStorage.set("StatCustomerStatement_DestProvince", "");
+                $.jStorage.set("StatCustomerStatement_DestCity", "");
+                $.jStorage.set("StatCustomerStatement_CarrierName", "");
+                $.jStorage.set("StatCustomerStatement_CarNo", "");
+                $.jStorage.set("StatCustomerStatement_GoodsName", "");
+                $.jStorage.set("StatCustomerStatement_AllowStatementWhenConsignedDeliverPlanNotCompleted", false);
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //统计承运单位对帐单
+            this.statCarrierStatement = function (action) {
+                $.jStorage.set("StatCarrierStatement_StartTime", "");
+                $.jStorage.set("StatCarrierStatement_EndTime", "");
+                $.jStorage.set("StatCarrierStatement_CarrierName", "");
+                $.jStorage.set("StatCarrierStatement_CarNo", "");
+                $.jStorage.set("StatCarrierStatement_StartCountry", "");
+                $.jStorage.set("StatCarrierStatement_StartProvince", "");
+                $.jStorage.set("StatCarrierStatement_StartCity", "");
+                $.jStorage.set("StatCarrierStatement_DestCountry", "");
+                $.jStorage.set("StatCarrierStatement_DestProvince", "");
+                $.jStorage.set("StatCarrierStatement_DestCity", "");
+                $.jStorage.set("StatCarrierStatement_DeliverBillReceiptReceived", true);
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //录入特殊结算价格
+            this.newDeliverBillCustomerTransportPrice = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6021, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //录入特殊承运价格
+            this.newDeliverBillCarrierTransportPrice = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6022, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询发票
+            this.searchCustomerTransportChargesSettlements = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6030, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询承运单位结算记录
+            this.searchCarrierTransportChargesSettlements = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6040, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询特殊结算价格
+            this.searchDeliverBillCustomerTransportPrices = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6050, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //查询特殊承运价格
+            this.searchDeliverBillCarrierTransportPrices = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 6060, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //#endregion
+            //#region 数据统计
+            ////////////////////////////////////////////////////////////////////////////////////
+            //统计办事处总产值
+            this.statOrganTotalOutput = function (action) {
+                $.jStorage.set("StatOrganTotalOutputCondition_StartTime", "");
+                $.jStorage.set("StatOrganTotalOutputCondition_EndTime", "");
+                $.jStorage.set("StatOrganTotalOutputCondition_OrganId", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 7010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //统计办事处毛利率
+            this.statOrganGrossProfitRate = function (action) {
+                $.jStorage.set("StatOrganGrossProfitRateCondition_StartTime", "");
+                $.jStorage.set("StatOrganGrossProfitRateCondition_EndTime", "");
+                $.jStorage.set("StatOrganGrossProfitRateCondition_OrganId", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 7011, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //统计客户总产值
+            this.statCustomerTotalOutput = function (action) {
+                $.jStorage.set("StatCustomerTotalOutputCondition_StartTime", "");
+                $.jStorage.set("StatCustomerTotalOutputCondition_EndTime", "");
+                $.jStorage.set("StatCustomerTotalOutputCondition_CustomerName", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 7020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //综合查询
+            this.syntheticalSearch = function (action) {
+                $.jStorage.set("SyntheticalSearchCondition_StartTime", "");
+                $.jStorage.set("SyntheticalSearchCondition_EndTime", "");
+                $.jStorage.set("SyntheticalSearchCondition_PayerName", "");
+                $.jStorage.set("SyntheticalSearchCondition_StartCountry", "");
+                $.jStorage.set("SyntheticalSearchCondition_StartProvince", "");
+                $.jStorage.set("SyntheticalSearchCondition_StartCity", "");
+                $.jStorage.set("SyntheticalSearchCondition_DestCountry", "");
+                $.jStorage.set("SyntheticalSearchCondition_DestProvince", "");
+                $.jStorage.set("SyntheticalSearchCondition_DestCity", "");
+                $.jStorage.set("SyntheticalSearchCondition_CarNo", "");
+                $.jStorage.set("SyntheticalSearchCondition_OrganId", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 7030, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //#endregion
+            //#region 系统管理
+            ////////////////////////////////////////////////////////////////////////////////////
+            //设置组织结构
+            this.setOrganization = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9010, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置岗位
+            this.setPosition = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9020, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置员工
+            this.setStaff = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9030, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置客户
+            this.setCustomer = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9040, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置帐号
+            this.setAccount = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9050, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置权限组
+            this.setPermissionGroup = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9060, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //分配权限
+            this.assignPermissions = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9070, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置计划审批流程
+            this.setPlanApproveFlow = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9071, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置价格审批流程
+            this.setPriceApproveFlow = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9072, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置国家
+            this.setCountry = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9080, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置省/州/区/直辖市
+            this.setProvince = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9090, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置市/县
+            this.setCity = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9100, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置货物类别
+            this.setGoodsType = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9110, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置货物档案
+            this.setGoods = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9120, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置承运单位档案
+            this.setCarrier = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9130, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置仓库
+            this.setWarehouse = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9140, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置运费限价
+            this.setTransportLimitedPrice = function (action) {
+                $.jStorage.set("SearchTransportLimitedPricesCondition_InitGrid", "1");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_PlanType", "");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_StartCountry", "");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_StartProvince", "");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_StartCity", "");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_DestCountry", "");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_DestProvince", "");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_DestCity", "");
+                $.jStorage.set("SearchTransportLimitedPricesCondition_ModifiedIds", "");
+
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9150, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //设置收货单位档案
+            this.setReceiver = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9151, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //修改密码
+            this.modifyPassword = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9160, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //初始化密码
+            this.resetPassword = function (action) {
+                //检查权限
+                $.get("/Common/LoadAccountPermission", { strFuncId: 9170, strPermission: "AllowOpen" }, function (ret) {
+                    if (ret == false) {
+                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                        return;
+                    }
+                    location.replace(action);
+                }, "text json").error(function (xhr, status, error) {
+                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+                });
+            };
+            //关闭窗体
+            this.exit = function () {
+                if ($.browser.msie) {
+                    window.open("", "_parent", "");
+                    window.close();
+                }
+                else {
+                    window.open("", "_self", "");
+                    window.close();
+                }
+            }
+            //#endregion
+        };
+        var objMain = new MainFrame();
+
+        //页面初始化
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+
+            jQuery.extend($.fn.fmatter, {
+                myNumberFmatter: function (cellvalue, options, rowdata) {
+                    return Math.round(parseFloat(cellvalue) * Math.pow(10, 6)) / Math.pow(10, 6);
+                }
+            });
+
+            $(window).resize(function () {
+                objMain.resizeMain();
+            });
+
+            var activedHead = $.jStorage.get("ActivedAccordionHead", 0);
+            $("#accordion").accordion({
+                header: "h3",
+                fillSpace: true,
+                active: activedHead,
+                icons: false,
+                change: function (event, ui) {
+                    var activedHead = $("#accordion").accordion("option", "active");
+                    $.jStorage.set("ActivedAccordionHead", activedHead);
+                }
+            });
+
+            //回车转TAB
+            $(document).keydown(function (evt) {
+                var key;
+                var srcobj;
+
+                if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
+                    key = event.keyCode;
+                    srcobj = event.srcElement;
+                }
+                else {
+                    key = evt.which;
+                    srcobj = evt.target;
+                }
+                if (key == 13 && srcobj.type != "textarea" && srcobj.type != "") {
+                    if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
+                        event.keyCode = 9;
+                    }
+                    else {
+                        var el = getNextElement(evt.target);
+                        if (el != null) {
+                            el.focus();
+                            return false;
+                        }
+                    }
+                }
+            });
+
+            //#region 读取待处理数
+
+            $.get("/Common/LoadPendingCount", function (ret) {
+                if (ret != null) {
+                    //读取待提交计划个数
+                    if (ret.SubmitDeliverPlansCount > 0) {
+                        $("#miSubmitDeliverPlans").append("(" + ret.SubmitDeliverPlansCount + ")");
+                        if ($("#menuPlanManage").find("img").size() == 1) {
+                            $("#menuPlanManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取客户审核计划个数
+                    if (ret.CustomerApprovePaperPlansCount > 0) {
+                        $("#miCustomerApprovePaperPlans").append("(" + ret.CustomerApprovePaperPlansCount + ")");
+                        if ($("#menuPlanManage").find("img").size() == 1) {
+                            $("#menuPlanManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取审批计划个数
+                    if (ret.ApproveDeliverPlansCount > 0) {
+                        $("#miApproveDeliverPlans").append("(" + ret.ApproveDeliverPlansCount + ")");
+                        if ($("#menuPlanManage").find("img").size() == 1) {
+                            $("#menuPlanManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待调度计划个数
+                    if (ret.DispatchDeliverPlansCount > 0) {
+                        $("#miDispatchDeliverPlans").append("(" + ret.DispatchDeliverPlansCount + ")");
+                        if ($("#menuDispatchManage").find("img").size() == 1) {
+                            $("#menuDispatchManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待提交调度单个数
+                    if (ret.SubmitDispatchBillsCount > 0) {
+                        $("#miSubmitDispatchBills").append("(" + ret.SubmitDispatchBillsCount + ")");
+                        if ($("#menuDispatchManage").find("img").size() == 1) {
+                            $("#menuDispatchManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待打印调度出仓单个数
+                    if (ret.DispatchBillsForPrintDispatchedShipmentBillCount > 0) {
+                        $("#miPrintDispatchedShipmentBills").append("(" + ret.DispatchBillsForPrintDispatchedShipmentBillCount + ")");
+                        if ($("#menuDeliveryManage").find("img").size() == 1) {
+                            $("#menuDeliveryManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待打印划拨出仓单个数
+                    if (ret.PrintAllocateShipmentBillsCount > 0) {
+                        $("#miPrintAllocateShipmentBills").append("(" + ret.PrintAllocateShipmentBillsCount + ")");
+                        if ($("#menuDeliveryManage").find("img").size() == 1) {
+                            $("#menuDeliveryManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待提交出仓单个数
+                    if (ret.SubmitShipmentBillsCount > 0) {
+                        $("#miSubmitShipmentBills").append("(" + ret.SubmitShipmentBillsCount + ")");
+                        if ($("#menuDeliveryManage").find("img").size() == 1) {
+                            $("#menuDeliveryManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待打印送货单个数
+                    if (ret.PrintDeliverBillsCount > 0) {
+                        $("#miPrintDeliverBills").append("(" + ret.PrintDeliverBillsCount + ")");
+                        if ($("#menuDeliveryManage").find("img").size() == 1) {
+                            $("#menuDeliveryManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待接收回单送货单个数
+                    if (ret.ReceiptDeliverBillsCount > 0) {
+                        $("#miReceiptDeliverBills").append("(" + ret.ReceiptDeliverBillsCount + ")");
+                        if ($("#menuDeliveryManage").find("img").size() == 1) {
+                            $("#menuDeliveryManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待录入合同个数
+                    if (ret.NewContractsCount > 0) {
+                        $("#miNewContract").append("(" + ret.NewContractsCount + ")");
+                        if ($("#menuContractManage").find("img").size() == 1) {
+                            $("#menuContractManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待提交合同个数
+                    if (ret.SubmitContractsCount > 0) {
+                        $("#miSubmitContracts").append("(" + ret.SubmitContractsCount + ")");
+                        if ($("#menuContractManage").find("img").size() == 1) {
+                            $("#menuContractManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待打印合同个数
+                    if (ret.PrintContractsCount > 0) {
+                        $("#miPrintContracts").append("(" + ret.PrintContractsCount + ")");
+                        if ($("#menuContractManage").find("img").size() == 1) {
+                            $("#menuContractManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待审批合同个数
+                    if (ret.ApproveContractsCount > 0) {
+                        $("#miApproveContracts").append("(" + ret.ApproveContractsCount + ")");
+                        if ($("#menuContractManage").find("img").size() == 1) {
+                            $("#menuContractManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待冲帐合同个数
+                    if (ret.ReverseContractsCount > 0) {
+                        $("#miReverseContracts").append("(" + ret.ReverseContractsCount + ")");
+                        if ($("#menuContractManage").find("img").size() == 1) {
+                            $("#menuContractManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+
+                    //读取待罚款合同个数
+                    if (ret.FineContractsCount > 0) {
+                        $("#miFineContracts").append("(" + ret.FineContractsCount + ")");
+                        if ($("#menuContractManage").find("img").size() == 1) {
+                            $("#menuContractManage").append('&nbsp;<img src="' + '<%: Url.Content("~/Content/Images/086.gif") %>' + '" alt="" style="border: none;" />');
+                        }
+                    }
+                }
+            }, "text json").error(function (xhr, status, error) {
+                if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+            });
+
+            //#endregion
+        });
+
+        function getNextElement(field) {
+            //debugger; //启动javascript调试器
+            while (true) {
+                var form = field.form;
+                if (form == undefined) {
+                    return null;
+                }
+
+                for (var e = 0; e < form.elements.length; e++) {
+                    if (field == form.elements[e])
+                        break;
+                }
+
+                var el = form.elements[++e % form.elements.length];
+
+                if (el.id == null || el.id == "") {
+                    field = el;
+                }
+                else if (el.type == "hidden") {
+                    field = el;
+                }
+                    //else if ($("#" + el.id).attr("readonly") == true || $("#" + el.id).attr("readonly") == "readonly") {
+                    //    field = el;
+                    //}
+                else if ($("#" + el.id).attr("disabled") == true || $("#" + el.id).attr("disabled") == "disabled") {
+                    field = el;
+                }
+                else if ($("#" + el.id).css("display") == "none") {
+                    field = el;
+                }
+                else {
+                    return el;
+                }
+            }
+        }
+
+        //窗体加载事件
+        $(window).load(function () {
+            //调整窗口布局
+            objMain.resizeMain();
+
+            //设置输入焦点
+            objMain.setFocus();
+        });
+
+    </script>
+    <div id="Header">
+        <img src="<%: Url.Content("~/Content/Images/004.png") %>" alt="" style="padding-left: 10px;" />
+        <div class="welcome">
+            <%: Session["WelcomeText"] %>
+        </div>
+        <ul class="nav">
+            <li class="home">
+                <%: Html.ActionLink(InnoSoft.LS.Resources.Buttons.Home, "", "", new { onclick = "javascript:location.replace('/Home/Main/');return false;" })%></li>
+            <li class="exit">
+                <%: Html.ActionLink(InnoSoft.LS.Resources.Buttons.Exit, "", "", new { onclick = "javascript:objMain.exit();return false;" })%></li>
+            <li class="help">
+                <%: Html.ActionLink(InnoSoft.LS.Resources.Buttons.Help, "", "", new { onclick = "javascript:location.replace('/Home/Help/');return false;" })%></li>
+        </ul>
+    </div>
+    <div id="accordionBar" style="position: absolute; width: 200px; padding: 5px; border: 1px solid #a6c9e2; display: none;">
+        <div id="accordion">
+            <div>
+                <h3>
+                    <a id="menuPlanManage" href="#">
+                        <img src="<%: Url.Content("~/Content/Images/013.png") %>" alt="" style="border: none;" /><b>
+                            <%: InnoSoft.LS.Resources.Menus.PlanManage %></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miNewPaperPlan" href="/chenxk/Plan/NewPaperPlan" onclick="javascript:objMain.newPaperPlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewPaperPlan%></a>
+                        </li>
+                        <li><a id="miCustomerNewPaperPlan" href="/chenxk/Plan/CustomerNewPaperPlan" onclick="javascript:objMain.customerNewPaperPlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.CustomerNewPaperPlan%></a>
+                        </li>
+                        <li><a id="miNewNotDeliverPaperPlan" href="/chenxk/Plan/NewNotDeliverPaperPlan" onclick="javascript:objMain.newNotDeliverPaperPlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewNotDeliverPaperPlan%></a>
+                        </li>
+                        <li><a id="miCustomerNewNotDeliverPaperPlan" href="/chenxk/Plan/CustomerNewNotDeliverPaperPlan"
+                            onclick="javascript:objMain.customerNewNotDeliverPaperPlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.CustomerNewNotDeliverPaperPlan%></a>
+                        </li>
+                        <li><a id="miNewCanPlan" href="/chenxk/Plan/NewCanPlan" onclick="javascript:objMain.newCanPlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewCanPlan%></a>
+                        </li>
+                        <li><a id="miNewNotDeliverCanPlan" href="/chenxk/Plan/NewNotDeliverCanPlan" onclick="javascript:objMain.newNotDeliverCanPlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewNotDeliverCanPlan%></a>
+                        </li>
+                        <li><a id="miNewNoodlePlan" href="/chenxk/Plan/NewNoodlePlan" onclick="javascript:objMain.newNoodlePlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewNoodlePlan%></a>
+                        </li>
+                        <li><a id="miNewOtherPlan" href="/chenxk/Plan/NewOtherPlan" onclick="javascript:objMain.newOtherPlan(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewOtherPlan%></a>
+                        </li>
+                        <li><a id="miSubmitDeliverPlans" href="/chenxk/Plan/SubmitDeliverPlans" onclick="javascript:objMain.submitDeliverPlans(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/030.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SubmitDeliverPlans%></a>
+                        </li>
+                        <li><a id="miCustomerApprovePaperPlans" href="/chenxk/Plan/CustomerApprovePaperPlans"
+                            onclick="javascript:objMain.customerApprovePaperPlans(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/028.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.CustomerApprovePaperPlans%></a>
+                        </li>
+                        <li><a id="miApproveDeliverPlans" href="/chenxk/Plan/ApproveDeliverPlans" onclick="javascript:objMain.approveDeliverPlans(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/028.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ApproveDeliverPlans%></a>
+                        </li>
+                        <li><a id="miSearchDeliverPlans" href="/chenxk/Plan/SearchDeliverPlans" onclick="javascript:objMain.searchDeliverPlans(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchPlans%></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a id="menuDispatchManage" href="#">
+                        <img src="<%: Url.Content("~/Content/Images/021.png") %>" alt="" style="border: none;" />
+                        <b>
+                            <%: InnoSoft.LS.Resources.Menus.DispatchManage%></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miDispatchDeliverPlans" href="/chenxk/Dispatch/DispatchDeliverPlans" onclick="javascript:objMain.dispatchDeliverPlans(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/031.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.DispatchPlans%></a>
+                        </li>
+                        <li><a id="miSubmitDispatchBills" href="/chenxk/Dispatch/SubmitDispatchBills" onclick="javascript:objMain.submitDispatchBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/030.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SubmitDispatchBills%></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a id="menuDeliveryManage" href="#">
+                        <img src="<%: Url.Content("~/Content/Images/011.png") %>" alt="" style="border: none;" />
+                        <b>
+                            <%: InnoSoft.LS.Resources.Menus.DeliveryManage%></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miPrintDispatchedShipmentBills" href="/chenxk/Deliver/PrintDispatchedShipmentBills"
+                            onclick="javascript:objMain.printDispatchedShipmentBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/062.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.PrintDispatchedShipmentBills%></a>
+                        </li>
+                        <li><a id="miPrintAllocateShipmentBills" href="/chenxk/Deliver/PrintAllocateShipmentBills"
+                            onclick="javascript:objMain.printAllocateShipmentBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/062.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.PrintAllocateShipmentBills%></a>
+                        </li>
+                        <li><a id="miSubmitShipmentBills" href="/chenxk/Deliver/SubmitShipmentBills" onclick="javascript:objMain.submitShipmentBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/030.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SubmitShipmentBills%></a>
+                        </li>
+                        <li><a id="miPrintDeliverBills" href="/chenxk/Deliver/PrintDeliverBills" onclick="javascript:objMain.printDeliverBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/062.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.PrintDeliverBills%></a>
+                        </li>
+                        <li><a id="miSearchDeliverBills" href="/chenxk/Deliver/SearchDeliverBills" onclick="javascript:objMain.searchDeliverBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchDeliverBills%></a>
+                        </li>
+                        <li><a id="miReceiptDeliverBills" href="/chenxk/Deliver/ReceiptDeliverBills" onclick="javascript:objMain.receiptDeliverBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/082.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ReceiptDeliverBills%></a>
+                        </li>
+                        <li><a id="miSearchDeliverBillReceipts" href="/chenxk/Deliver/SearchDeliverBillReceipts"
+                            onclick="javascript:objMain.searchDeliverBillReceipts(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchDeliverBillReceipts%></a>
+                        </li>
+                        <li><a id="miReprintShipmentBills" href="/chenxk/Deliver/ReprintShipmentBills" onclick="javascript:objMain.reprintShipmentBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/062.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ReprintShipmentBills%></a>
+                        </li>
+                        <li><a id="miReprintDeliverBills" href="/chenxk/Deliver/ReprintDeliverBills" onclick="javascript:objMain.reprintDeliverBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/062.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ReprintDeliverBills%></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a id="menuContractManage" href="#">
+                        <img src="<%: Url.Content("~/Content/Images/009.png") %>" alt="" style="border: none;" />
+                        <b>
+                            <%: InnoSoft.LS.Resources.Menus.ContractManage%></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miNewContract" href="/chenxk/Contract/NewContract" onclick="javascript:objMain.newContract(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewContract%></a>
+                        </li>
+                        <li><a id="miSubmitContracts" href="/chenxk/Contract/SubmitContracts" onclick="javascript:objMain.submitContracts(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/030.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SubmitContracts%></a>
+                        </li>
+                        <li><a id="miPrintContracts" href="/chenxk/Contract/PrintContracts" onclick="javascript:objMain.printContracts(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/062.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.PrintContracts%></a>
+                        </li>
+                        <li><a id="miApproveContracts" href="/chenxk/Contract/ApproveContracts" onclick="javascript:objMain.approveContracts(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/074.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ApproveContracts%></a>
+                        </li>
+                        <li><a id="miReverseContracts" href="/chenxk/Contract/ReverseContracts" onclick="javascript:objMain.reverseContract(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/081.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ReverseContracts%></a>
+                        </li>
+                        <li><a id="miSearchReverses" href="/chenxk/Contract/SearchReverses" onclick="javascript:objMain.searchReverses(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchReverses%></a>
+                        </li>
+                        <li><a id="miFineContracts" href="/chenxk/Contract/FineContracts" onclick="javascript:objMain.fineContracts(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/075.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.FineContracts%></a>
+                        </li>
+                        <li><a id="miSearchFines" href="/chenxk/Contract/SearchFines" onclick="javascript:objMain.searchFines(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchFines %></a>
+                        </li>
+                        <li><a id="miSearchContracts" href="/chenxk/Contract/SearchContracts" onclick="javascript:objMain.searchContracts(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchContracts %></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">
+                        <img src="<%: Url.Content("~/Content/Images/017.png") %>" alt="" style="border: none;" />
+                        <b>
+                            <%: InnoSoft.LS.Resources.Menus.WarehouseManage%></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miEnterWarehouse" href="/chenxk/Stock/EnterWarehouse" onclick="javascript:objMain.enterWarehouse(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/076.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.EnterWarehouse%></a>
+                        </li>
+                        <li><a id="miOutWarehouse" href="/chenxk/Stock/OutWarehouse" onclick="javascript:objMain.outWarehouse(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/086.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.OutWarehouse%></a>
+                        </li>
+                        <li><a id="miMoveWarehouse" href="/chenxk/Stock/MoveWarehouse" onclick="javascript:objMain.moveWarehouse(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/083.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.MoveWarehouse%></a>
+                        </li>
+                        <li><a id="miSearchEnterWarehouseBills" href="/chenxk/Stock/SearchEnterWarehouseBills"
+                            onclick="javascript:objMain.searchEnterWarehouseBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchEnterWarehouseBills%></a>
+                        </li>
+                        <li><a id="miSearchOutWarehouseBills" href="/chenxk/Stock/SearchOutWarehouseBills"
+                            onclick="javascript:objMain.searchOutWarehouseBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchOutWarehouseBills%></a>
+                        </li>
+                        <li><a id="miSearchMoveWarehouseBills" href="/chenxk/Stock/SearchMoveWarehouseBills"
+                            onclick="javascript:objMain.searchMoveWarehouseBills(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchMoveWarehouseBills%></a>
+                        </li>
+                        <li><a id="miEnterOutBalanceSummary" href="/chenxk/Stock/EnterOutBalanceSummary"
+                            onclick="javascript:objMain.enterOutBalanceSummary(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/078.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.EnterOutBalanceSummary%></a>
+                        </li>
+                        <li><a id="miStatStorageAndForceFee" href="/chenxk/Stock/StatStorageAndForceFee"
+                            onclick="javascript:objMain.statStorageAndForceFee(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/078.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.StatStorageAndForceFee%></a>
+                        </li>
+                        <li><a id="miSearchStorageAndForceFeeSettlements" href="/chenxk/Stock/SearchStorageAndForceFeeSettlements"
+                            onclick="javascript:objMain.searchStorageAndForceFeeSettlements(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchStorageAndForceFeeSettlements%></a>
+                        </li>
+                        <li><a id="miSearchConsigningDeliverPlans" href="/chenxk/Stock/SearchConsigningDeliverPlans"
+                            onclick="javascript:objMain.searchConsigningDeliverPlans(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchConsigningDeliverPlans%></a>
+                        </li>
+                        <li><a id="miPrintStocktaking" href="/chenxk/Stock/PrintStocktaking" onclick="javascript:objMain.printStocktaking(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/062.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.PrintStocktaking%></a>
+                        </li>
+                        <li><a id="miSearchStockEndDifferences" href="/chenxk/Stock/SearchStockEndDifferences"
+                            onclick="javascript:objMain.searchStockEndDifferences(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchStockEndDifferences%></a>
+                        </li>
+                        <li><a id="miEnterStockEndDifferences" href="/chenxk/Stock/EnterStockEndDifferences"
+                            onclick="javascript:objMain.enterStockEndDifferences(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/088.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.EnterStockEndDifferences%></a>
+                        </li>
+                        <li><a id="miOutStockEndDifferences" href="/chenxk/Stock/OutStockEndDifferences"
+                            onclick="javascript:objMain.outStockEndDifferences(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/089.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.OutStockEndDifferences%></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">
+                        <img src="<%: Url.Content("~/Content/Images/023.png") %>" alt="" style="border: none;" />
+                        <b>
+                            <%: InnoSoft.LS.Resources.Menus.SettlementManage%></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miNewDeliverBillCustomerTransportPrice" href="/chenxk/Settlement/NewDeliverBillCustomerTransportPrice"
+                            onclick="javascript:objMain.newDeliverBillCustomerTransportPrice(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewDeliverBillCustomerTransportPrice%></a>
+                        </li>
+                        <li><a id="miNewDeliverBillCarrierTransportPrice" href="/chenxk/Settlement/NewDeliverBillCarrierTransportPrice"
+                            onclick="javascript:objMain.newDeliverBillCarrierTransportPrice(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/033.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.NewDeliverBillCarrierTransportPrice%></a>
+                        </li>
+                        <li><a id="miStatCustomerStatement" href="/chenxk/Settlement/StatCustomerStatement"
+                            onclick="javascript:objMain.statCustomerStatement(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/078.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.StatCustomerStatement%></a>
+                        </li>
+                        <li><a id="miStatCarrierStatement" href="/chenxk/Settlement/StatCarrierStatement"
+                            onclick="javascript:objMain.statCarrierStatement(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/078.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.StatCarrierStatement%></a>
+                        </li>
+                        <li><a id="miSearchDeliverBillCustomerTransportPrices" href="/chenxk/Settlement/SearchDeliverBillCustomerTransportPrices"
+                            onclick="javascript:objMain.searchDeliverBillCustomerTransportPrices(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchDeliverBillCustomerTransportPrices%></a>
+                        </li>
+                        <li><a id="miSearchDeliverBillCarrierTransportPrices" href="/chenxk/Settlement/SearchDeliverBillCarrierTransportPrices"
+                            onclick="javascript:objMain.searchDeliverBillCarrierTransportPrices(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchDeliverBillCarrierTransportPrices%></a>
+                        </li>
+                        <li><a id="miSearchCustomerTransportChargesSettlements" href="/chenxk/Settlement/SearchCustomerTransportChargesSettlements"
+                            onclick="javascript:objMain.searchCustomerTransportChargesSettlements(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchCustomerTransportChargesSettlements%></a>
+                        </li>
+                        <li><a id="miSearchCarrierTransportChargesSettlements" href="/chenxk/Settlement/SearchCarrierTransportChargesSettlements"
+                            onclick="javascript:objMain.searchCarrierTransportChargesSettlements(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SearchCarrierTransportChargesSettlements%></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">
+                        <img src="<%: Url.Content("~/Content/Images/007.png") %>" alt="" style="border: none;" />
+                        <b>
+                            <%: InnoSoft.LS.Resources.Menus.StatisticsManage%></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miStatOrganTotalOutput" href="/chenxk/Statistics/StatOrganTotalOutput"
+                            onclick="javascript:objMain.statOrganTotalOutput(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/078.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.StatOrganTotalOutput%></a>
+                        </li>
+                        <li><a id="miStatOrganGrossProfitRate" href="/chenxk/Statistics/StatOrganGrossProfitRate"
+                            onclick="javascript:objMain.statOrganGrossProfitRate(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/078.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.StatOrganGrossProfitRate%></a>
+                        </li>
+                        <li><a id="miStatCustomerTotalOutput" href="/chenxk/Statistics/StatCustomerTotalOutput"
+                            onclick="javascript:objMain.statCustomerTotalOutput(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/078.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.StatCustomerTotalOutput%></a>
+                        </li>
+                        <li><a id="miSyntheticalSearch" href="/chenxk/Statistics/SyntheticalSearch"
+                            onclick="javascript:objMain.syntheticalSearch(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/061.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SyntheticalSearch%></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">
+                        <img src="<%: Url.Content("~/Content/Images/015.png") %>" alt="" style="border: none;" />
+                        <b>
+                            <%: InnoSoft.LS.Resources.Menus.SystemManage%></b></a></h3>
+                <div>
+                    <ul class="AccordionMenu">
+                        <li><a id="miSetOrganization" href="/chenxk/System/SetOrganization" onclick="javascript:objMain.setOrganization(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/064.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetOrganization%></a>
+                        </li>
+                        <li><a id="miSetPosition" href="/chenxk/System/SetPosition" onclick="javascript:objMain.setPosition(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/058.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetPosition%></a>
+                        </li>
+                        <li><a id="miSetStaff" href="/chenxk/System/SetStaff" onclick="javascript:objMain.setStaff(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/065.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetStaff%></a>
+                        </li>
+                        <li><a id="miSetCustomer" href="/chenxk/System/SetCustomer" onclick="javascript:objMain.setCustomer(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/054.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetCustomer%></a>
+                        </li>
+                        <li><a id="miSetAccount" href="/chenxk/System/SetAccount" onclick="javascript:objMain.setAccount(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/056.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetAccount%></a>
+                        </li>
+                        <li><a id="miSetPermissionGroup" href="/chenxk/System/SetPermissionGroup" onclick="javascript:objMain.setPermissionGroup(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/067.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetPermissionGroup%></a>
+                        </li>
+                        <li><a id="miAssignPermissions" href="/chenxk/System/AssignPermissions" onclick="javascript:objMain.assignPermissions(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/068.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.AssignPermissions%></a>
+                        </li>
+                        <li><a id="miSetPlanApproveFlow" href="/chenxk/Flow/SetPlanApproveFlow" onclick="javascript:objMain.setPlanApproveFlow(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/073.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetPlanApproveFlow%></a>
+                        </li>
+                        <li><a id="miSetPriceApproveFlow" href="/chenxk/Flow/SetPriceApproveFlow" onclick="javascript:objMain.setPriceApproveFlow(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/073.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetPriceApproveFlow%></a>
+                        </li>
+                        <li><a id="miSetCountry" href="/shancl/System/SetCountry" onclick="javascript:objMain.setCountry(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetCountry%></a>
+                        </li>
+                        <li><a id="miSetProvince" href="/shancl/System/SetProvince" onclick="javascript:objMain.setProvince(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetProvince%></a>
+                        </li>
+                        <li><a id="miSetCity" href="/shancl/System/SetCity" onclick="javascript:objMain.setCity(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetCity%></a>
+                        </li>
+                        <li><a id="miSetGoodsType" href="/shancl/System/SetGoodsType" onclick="javascript:objMain.setGoodsType(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetGoodsType%></a>
+                        </li>
+                        <li><a id="miSetGoods" href="/chenxk/System/SetGoods" onclick="javascript:objMain.setGoods(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetGoods%></a>
+                        </li>
+                        <li><a id="miSetCarrier" href="/chenxk/System/SetCarrier" onclick="javascript:objMain.setCarrier(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetCarrier%></a>
+                        </li>
+                        <li><a id="miSetWarehouse" href="/chenxk/System/SetWarehouse" onclick="javascript:objMain.setWarehouse(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetWarehouse%></a>
+                        </li>
+                        <li><a id="miSetTransportLimitedPrice" href="/chenxk/System/SetTransportLimitedPrice"
+                            onclick="javascript:objMain.setTransportLimitedPrice(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/059.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetTransportLimitedPrice%></a>
+                        </li>
+                        <li><a id="miSetReceiver" href="/chenxk/System/SetReceiver" onclick="javascript:objMain.setReceiver(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/087.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.SetReceiver%></a>
+                        </li>
+                        <li><a id="miModifyPassword" href="/chenxk/System/ModifyPassword" onclick="javascript:objMain.modifyPassword(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/071.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ModifyPassword%></a>
+                        </li>
+                        <li><a id="miResetPassword" href="/chenxk/System/ResetPassword" onclick="javascript:objMain.resetPassword(this.href);return false;">
+                            <img src="<%: Url.Content("~/Content/Images/070.png") %>" alt="" style="border: none;" /><%:InnoSoft.LS.Resources.Menus.ResetPassword%></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="divMain" style="position: absolute; padding: 5px; border: 1px solid #a6c9e2; display: none;">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <object id="LODOP" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width="0"
+        height="0">
+        <embed id="LODOP_EM" type="application/x-print-lodop" width="0" height="0"></embed>
+    </object>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Main.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    <%: InnoSoft.LS.Resources.Titles.AppName %>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+
+        //工作区对象
+        function Workspace() {
+            //工作内容对象
+            this.objContent = null;
+            //调整工作区布局
+            this.resizeWorkspace = function () {
+                $("#divWorkspace").css("height", ($("#divMain").height() - 1 - 1) + "px");
+                $("#divWorkspace").css("width", ($("#divMain").width() - 1 - 1) + "px");
+
+                $("#divWorkspaceContent").css("height", ($("#divMain").height() - 1 - 1 - 35 - 1 - 35) + "px");
+                $("#divWorkspaceContent").css("width", ($("#divMain").width() - 1 - 1) + "px");
+
+                $("#divWorkspace").css("display", "block");
+
+                if (this.objContent != null) {
+                    this.objContent.resizeContent();
+                }
+            };
+            //设置输入焦点
+            this.setFocus = function () {
+                if (this.objContent != null) {
+                    this.objContent.setFocus();
+                }
+            };
+        };
+        objMain.objWorkspace = new Workspace();
+
+    </script>
+    <div id="divWorkspace" style="border: 1px solid #a6c9e2; display: none;">
+        <div id="TitleBar">
+            &nbsp;
+            <asp:ContentPlaceHolder ID="TitleContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="MenuBar">
+            <asp:ContentPlaceHolder ID="MenuContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="divWorkspaceContent" style="overflow: auto;">
+            <asp:ContentPlaceHolder ID="WorkspaceContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+</asp:Content>

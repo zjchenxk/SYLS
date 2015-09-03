@@ -1,0 +1,7 @@
+update DeliverBillGoods set GoodsName='富桂高松厚单面涂布白卡' where GoodsId=26001529655 and GoodsName='富桂高松厚度单面涂布白卡'
+update DeliverPlanGoods set GoodsName='富桂高松厚单面涂布白卡' where GoodsId=26001529655 and GoodsName='富桂高松厚度单面涂布白卡'
+update DispatchBillGoods set GoodsName='富桂高松厚单面涂布白卡' where GoodsId=26001529655 and GoodsName='富桂高松厚度单面涂布白卡'
+update EnterWarehouseBillGoods set GoodsName='富桂高松厚单面涂布白卡' where GoodsId=26001529655 and GoodsName='富桂高松厚度单面涂布白卡'
+update MoveWarehouseBillGoods set GoodsName='富桂高松厚单面涂布白卡' where GoodsId=26001529655 and GoodsName='富桂高松厚度单面涂布白卡'
+update OutWarehouseBillGoods set GoodsName='富桂高松厚单面涂布白卡' where GoodsId=26001529655 and GoodsName='富桂高松厚度单面涂布白卡'
+update Stock set GoodsName='富桂高松厚单面涂布白卡' where GoodsId=26001529655 and GoodsName='富桂高松厚度单面涂布白卡'

@@ -1,0 +1,381 @@
+﻿body {
+    font-size: 75%;
+    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+    margin: 0px 0px 0px 0px;
+    overflow: hidden;
+}
+
+/* 详细信息页面表格样式
+----------------------------------------------------------*/
+.details {
+    background-color: #EBF7F8;
+    border: 1px solid #9FCCEC;
+    width: 100%;
+}
+
+.label {
+    text-indent: 15px;
+    color: black;
+    line-height: 1.7em;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: #EBF7F8;
+    text-align: right;
+    width: 16%;
+}
+
+.content {
+    padding-left: 5px;
+    line-height: 1.7em;
+    background-color: #FFFFFF;
+    width: 84%;
+}
+
+/* 圆角框样式
+----------------------------------------------------------*/
+.RoundCornerLeftTop {
+    width: 6px;
+    background-image: url(Images/039.png);
+}
+
+.RoundCornerTop {
+    background-image: url(Images/040.png);
+    background-repeat: repeat-x;
+}
+
+.RoundCornerRightTop {
+    width: 6px;
+    background-image: url(Images/041.png);
+}
+
+.RoundCornerLeft {
+    background-image: url(Images/046.png);
+    background-repeat: repeat-y;
+}
+
+.RoundCornerRight {
+    background-image: url(Images/042.png);
+    background-repeat: repeat-y;
+}
+
+.RoundCornerLeftBottom {
+    width: 6px;
+    background-image: url(Images/045.png);
+}
+
+.RoundCornerBottom {
+    background-image: url(Images/044.png);
+    background-repeat: repeat-x;
+}
+
+.RoundCornerRightBottom {
+    width: 6px;
+    background-image: url(Images/043.png);
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset {
+    border: 1px solid #ddd;
+    margin: 0.5em 0.7em 0.7em 0.7em;
+    padding: 0.7em 0.7em 1.4em 0.7em;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+input[type="text"] {
+    width: 400px;
+    border: 1px solid #CCC;
+}
+
+input[type="password"] {
+    width: 400px;
+    border: 1px solid #CCC;
+}
+
+input[type="file"] {
+    width: 400px;
+    border: 1px solid #CCC;
+}
+
+input[type="submit"] {
+    width: 70px;
+}
+
+input[type="button"] {
+    width: 70px;
+}
+
+select {
+    width: 400px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+    text-align: left;
+}
+
+.editor-label-right {
+    margin: 0.5em 0 0 0;
+    text-align: right;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+    text-align: left;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/*首页导航样式
+-----------------------------------------------------------*/
+.nav {
+    width: 200px;
+    height: 50px;
+    background: url(Images/047.png) no-repeat;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+    .nav li {
+        display: inline;
+    }
+
+        .nav li a:link, .nav li a:visited {
+            position: absolute;
+            top: 0px;
+            height: 50px;
+            text-indent: -9000px;
+            overflow: hidden;
+        }
+
+    .nav .home a:link, .nav .home a:visited {
+        left: 7px;
+        width: 58px;
+    }
+
+    .nav .home a:hover, .nav .home a:focus {
+        background: url(Images/047.png) no-repeat -7px -50px;
+    }
+
+    .nav .home a:active {
+        background: url(Images/047.png) no-repeat -7px -50px;
+    }
+
+    .nav .exit a:link, .nav .exit a:visited {
+        left: 72px;
+        width: 58px;
+    }
+
+    .nav .exit a:hover, .nav .exit a:focus {
+        background: url(Images/047.png) no-repeat -72px -50px;
+    }
+
+    .nav .exit a:active {
+        background: url(Images/047.png) no-repeat -72px -50px;
+    }
+
+    .nav .help a:link, .nav .help a:visited {
+        left: 137px;
+        width: 58px;
+    }
+
+    .nav .help a:hover, .nav .help a:focus {
+        background: url(Images/047.png) no-repeat -137px -50px;
+    }
+
+    .nav .help a:active {
+        background: url(Images/047.png) no-repeat -137px -50px;
+    }
+
+/*欢迎字样样式
+-----------------------------------------------------------*/
+.welcome {
+    position: absolute;
+    top: 0px;
+    right: 210px;
+    height: 50px;
+    width: 400px;
+    color: White;
+    font-size: 1.2em;
+    line-height: 50px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* Styles for Accordion Menu
+----------------------------------------------------------*/
+.AccordionMenu {
+    position: relative;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 8px 0px;
+}
+
+    .AccordionMenu li {
+        list-style: none;
+        padding-bottom: 2px;
+    }
+
+        .AccordionMenu li a {
+            display: block;
+            padding: 2px 0; /*font-weight: bold;*/
+            text-decoration: none;
+            background-color: #fff;
+            color: #034af3;
+            white-space: nowrap;
+        }
+
+            .AccordionMenu li a:hover {
+                background-color: #e8eef4;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+
+            .AccordionMenu li a:active {
+                background-color: #a6e2a6;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+
+        .AccordionMenu li.selected a {
+            background-color: #fff;
+            color: #000;
+            white-space: nowrap;
+        }
+
+/* Title Bar  
+----------------------------------------------------------*/
+div#TitleBar {
+    height: 33px;
+    border: 1px solid #a6c9e2;
+    background-image: url(redmond/images/ui-bg_gloss-wave_75_2191c0_500x100.png);
+    background-repeat: repeat-x;
+    background-position: center;
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: White;
+    line-height: 33px;
+    vertical-align: middle;
+}
+
+/* Header
+----------------------------------------------------------*/
+div#Header {
+    height: 50px;
+    width: 100%;
+    background-image: url(Images/003.png);
+    background-repeat: repeat-x;
+}
+
+/* Menu Bar  
+----------------------------------------------------------*/
+div#MenuBar {
+    height: 33px;
+    border: 1px solid #a6c9e2;
+    background-image: url(redmond/images/ui-bg_gloss-wave_50_6eac2c_500x100.png);
+    background-repeat: repeat-x;
+    background-position: center;
+    margin-top: 1px;
+}
+
+/* Menu   
+----------------------------------------------------------*/
+ul#menu {
+    padding: 6px 4px;
+    position: relative;
+    margin: 0;
+}
+
+    ul#menu li {
+        display: inline;
+        list-style: none;
+    }
+
+        ul#menu li#greeting {
+            margin: 0;
+            padding: 6px 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        ul#menu li a {
+            margin: 0;
+            padding: 6px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            background-color: transparent;
+        }
+
+            ul#menu li a:hover {
+                color: #034af3;
+                background-color: #e8eef4;
+                text-decoration: none;
+            }
+
+            ul#menu li a:active {
+                color: #034af3;
+                background-color: #e8eef4; /*#a6e2a6;*/
+                text-decoration: none;
+            }
+
+        ul#menu li.selected a {
+            background-color: transparent;
+            color: #fff; /* #000;*/
+        }
+
+/* Data Grid
+----------------------------------------------------------*/
+div#Grid {
+    margin-top: 1px;
+}
+
+/* Grid 列突出显示
+-----------------------------------------------------------*/
+.ColStandOut {
+    /*background-color: #e8eef4 !important;*/
+    border-left: 3px double green !important;
+}
