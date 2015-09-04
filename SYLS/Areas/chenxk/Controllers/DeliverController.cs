@@ -1,15 +1,15 @@
-﻿using System;
+﻿using InnoSoft.LS.Business.Facades;
+using InnoSoft.LS.Models;
+using SYLS.Areas.chenxk.ViewModels;
+using SYLS.Controllers;
+using SYLS.Helper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using InnoSoft.LS.Business.Facades;
-using InnoSoft.LS.Models;
-using SYLS.Areas.chenxk.ViewModels;
-using SYLS.Controllers;
-using SYLS.Helper;
 
 namespace SYLS.Areas.chenxk.Controllers
 {
@@ -1611,6 +1611,67 @@ namespace SYLS.Areas.chenxk.Controllers
         [Authorize]
         public ActionResult SearchDeliverBillReceipts()
         {
+            string strErrText;
+
+            //生成国家下拉列表项
+            DDSystem dd = new DDSystem();
+            List<Country> listCountry = dd.LoadCountrys(LoginAccountId, LoginStaffName, out strErrText);
+            if (listCountry == null)
+            {
+                throw new Exception(strErrText);
+            }
+            List<SelectListItem> selectListCountry = new List<SelectListItem>();
+            selectListCountry.Add(new SelectListItem { Text = string.Empty, Value = string.Empty });
+            selectListCountry.AddRange(from c in listCountry
+                                       select new SelectListItem
+                                       {
+                                           Text = c.Name,
+                                           Value = c.Name
+                                       });
+            ViewData["Countrys"] = new SelectList(selectListCountry, "Value", "Text");
+
+            //生成空的省份下拉列表项
+            List<Province> listState = new List<Province>();
+            List<SelectListItem> selectListState = new List<SelectListItem>();
+            selectListState.Add(new SelectListItem { Text = string.Empty, Value = string.Empty });
+            selectListState.AddRange(from s in listState
+                                     select new SelectListItem
+                                     {
+                                         Text = s.Name,
+                                         Value = s.Name
+                                     });
+            ViewData["Provinces"] = new SelectList(selectListState, "Value", "Text");
+
+            //生成空的城市下拉列表项
+            List<City> listCity = new List<City>();
+            List<SelectListItem> selectListCity = new List<SelectListItem>();
+            selectListCity.Add(new SelectListItem { Text = string.Empty, Value = string.Empty });
+            selectListCity.AddRange(from ci in listCity
+                                    select new SelectListItem
+                                    {
+                                        Text = ci.Name,
+                                        Value = ci.Name
+                                    });
+            ViewData["Citys"] = new SelectList(selectListCity, "Value", "Text");
+
+            //生成组织部门下拉列表项
+            OrganizationSystem organ = new OrganizationSystem();
+            List<Organization> listOrganization = organ.LoadOrganizations(LoginAccountId, LoginStaffName, out strErrText);
+            if (listOrganization == null)
+            {
+                throw new Exception(strErrText);
+            }
+            List<SelectListItem> selectListOrganization = new List<SelectListItem>();
+            selectListOrganization.Add(new SelectListItem { Text = string.Empty, Value = string.Empty });
+            selectListOrganization.AddRange(from o in listOrganization
+                                            orderby o.FullName
+                                            select new SelectListItem
+                                            {
+                                                Text = o.FullName,
+                                                Value = o.Id.ToString()
+                                            });
+            ViewData["Organizations"] = new SelectList(selectListOrganization, "Value", "Text");
+
             return View();
         }
 
@@ -1623,14 +1684,23 @@ namespace SYLS.Areas.chenxk.Controllers
         /// <param name="rows"></param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
+        /// <param name="customerName"></param>
+        /// <param name="deliveryNo"></param>
+        /// <param name="carNo"></param>
+        /// <param name="destCountry"></param>
+        /// <param name="destProvince"></param>
+        /// <param name="destCity"></param>
+        /// <param name="organId"></param>
         /// <returns></returns>
         [Authorize]
-        public JsonResult LoadSearchDeliverBillReceiptsGrid(string sidx, string sord, int page, int rows, string startTime, string endTime)
+        public JsonResult LoadSearchDeliverBillReceiptsGrid(string sidx, string sord, int page, int rows, string startTime, string endTime, string customerName, string deliveryNo,
+            string carNo, string destCountry, string destProvince, string destCity, string organId)
         {
             //读取数据
             string strErrText;
             DeliverSystem deliver = new DeliverSystem();
-            List<DeliverBill> listDeliverBill = deliver.LoadDeliverBillReceiptsByConditions(startTime, endTime, LoginAccountId, LoginStaffName, out strErrText);
+            List<DeliverBill> listDeliverBill = deliver.LoadDeliverBillReceiptsByConditions(startTime, endTime, customerName, deliveryNo, carNo, destCountry,
+                destProvince, destCity, organId, LoginAccountId, LoginStaffName, out strErrText);
             if (listDeliverBill == null)
             {
                 throw new Exception(strErrText);
@@ -1661,8 +1731,10 @@ namespace SYLS.Areas.chenxk.Controllers
                           cell = new string[] { 
                               b.Id.ToString(), 
                               b.BillNo,
+                              b.CreateTime.ToString("yyyy-MM-dd"),
                               b.CustomerName,
                               b.DeliveryNo,
+                              b.ReceiverCity,
                               b.ReceiverName,
                               b.CarNo,
                               b.TotalPackages.ToString(),
@@ -1690,10 +1762,18 @@ namespace SYLS.Areas.chenxk.Controllers
             var request = HttpContext.Request;
             string strStartTime = request.QueryString["startTime"] ?? string.Empty;
             string strEndTime = request.QueryString["endTime"] ?? string.Empty;
+            string strCustomerName = request.QueryString["customerName"] ?? string.Empty;
+            string strDeliveryNo = request.QueryString["deliveryNo"] ?? string.Empty;
+            string strCarNo = request.QueryString["carNo"] ?? string.Empty;
+            string strDestCountry = request.QueryString["destCountry"] ?? string.Empty;
+            string strDestProvince = request.QueryString["destProvince"] ?? string.Empty;
+            string strDestCity = request.QueryString["destCity"] ?? string.Empty;
+            string strOrganId = request.QueryString["organId"] ?? string.Empty;
 
             //读取回单数据
             DeliverSystem deliver = new DeliverSystem();
-            List<DeliverBill> listDeliverBill = deliver.LoadDeliverBillReceiptsByConditions(strStartTime, strEndTime, LoginAccountId, LoginStaffName, out strErrText);
+            List<DeliverBill> listDeliverBill = deliver.LoadDeliverBillReceiptsByConditions(strStartTime, strEndTime, strCustomerName, strDeliveryNo, strCarNo,
+                strDestCountry, strDestProvince, strDestCity, strOrganId, LoginAccountId, LoginStaffName, out strErrText);
             if (listDeliverBill == null)
             {
                 throw new Exception(strErrText);
@@ -1704,6 +1784,10 @@ namespace SYLS.Areas.chenxk.Controllers
             colDeliverBillNo.HeaderText = InnoSoft.LS.Resources.Labels.DeliverBillNo;
             colDeliverBillNo.DataField = "BillNo";
 
+            BoundField colDeliverDate = new BoundField();
+            colDeliverDate.HeaderText = InnoSoft.LS.Resources.Labels.DeliverDate;
+            colDeliverDate.DataField = "CreateTime";
+
             BoundField colCustomerName = new BoundField();
             colCustomerName.HeaderText = InnoSoft.LS.Resources.Labels.CustomerName;
             colCustomerName.DataField = "CustomerName";
@@ -1711,6 +1795,10 @@ namespace SYLS.Areas.chenxk.Controllers
             BoundField colDeliveryNo = new BoundField();
             colDeliveryNo.HeaderText = InnoSoft.LS.Resources.Labels.DeliveryNo;
             colDeliveryNo.DataField = "DeliveryNo";
+
+            BoundField colReceiverCity = new BoundField();
+            colReceiverCity.HeaderText = InnoSoft.LS.Resources.Labels.DestPlace;
+            colReceiverCity.DataField = "ReceiverCity";
 
             BoundField colReceiverName = new BoundField();
             colReceiverName.HeaderText = InnoSoft.LS.Resources.Labels.ReceiverName;
@@ -1746,8 +1834,10 @@ namespace SYLS.Areas.chenxk.Controllers
 
             var grid = new GridView();
             grid.Columns.Add(colDeliverBillNo);
+            grid.Columns.Add(colDeliverDate);
             grid.Columns.Add(colCustomerName);
             grid.Columns.Add(colDeliveryNo);
+            grid.Columns.Add(colReceiverCity);
             grid.Columns.Add(colReceiverName);
             grid.Columns.Add(colCarNo);
             grid.Columns.Add(colPackages);
@@ -1763,8 +1853,10 @@ namespace SYLS.Areas.chenxk.Controllers
                               select new
                               {
                                   BillNo = bill.BillNo,
+                                  CreateTime = bill.CreateTime.ToString("yyyy-MM-dd"),
                                   CustomerName = bill.CustomerName,
                                   DeliveryNo = bill.DeliveryNo,
+                                  ReceiverCity = bill.ReceiverCity,
                                   ReceiverName = bill.ReceiverName,
                                   CarNo = bill.CarNo,
                                   Packages = bill.TotalPackages > 0 ? bill.TotalPackages.ToString() : string.Empty,

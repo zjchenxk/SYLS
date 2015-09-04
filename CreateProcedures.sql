@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  InnoLS                                       */
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     2015/1/18 14:18:24                           */
+/* Created on:     2015/9/4 11:20:33                            */
 /*==============================================================*/
 
 
@@ -24589,6 +24589,13 @@ go
 create procedure LoadDeliverBillReceiptsByConditions 
 @StartTime nvarchar(50),
 @EndTime nvarchar(50),
+@CustomerName nvarchar(50),
+@DeliveryNo nvarchar(50),
+@CarNo nvarchar(50),
+@DestCountry nvarchar(50),
+@DestProvince nvarchar(50),
+@DestCity nvarchar(50),
+@OrganId nvarchar(50),
 @OpStaffId bigint,
 @OpStaffName nvarchar(50) 
 with encryption 
@@ -24640,6 +24647,48 @@ begin
         set @Sql = @Sql + ' and '
         set @Sql = @Sql + '(convert(nvarchar(10),db.ReturnTime,120) <= ''' + @EndTime + ''')'
     end
+    
+    if @CustomerName is not null and @CustomerName <> ''
+    begin
+        set @Sql = @Sql + ' and '
+        set @Sql = @Sql + '(db.CustomerName like ''%' + @CustomerName + '%'')'
+    end
+    
+    if @DeliveryNo is not null and @DeliveryNo <> ''
+    begin
+        set @Sql = @Sql + ' and '
+        set @Sql = @Sql + '(db.DeliveryNo like ''%' + @DeliveryNo + '%'')'
+    end
+    
+    if @CarNo is not null and @CarNo <> ''
+    begin
+        set @Sql = @Sql + ' and '
+        set @Sql = @Sql + '(db.CarNo like ''%' + @CarNo + '%'')'
+    end
+
+    if @DestCountry is not null and @DestCountry <> ''
+    begin
+        set @Sql = @Sql + ' and '
+        set @Sql = @Sql + '(db.ReceiverCountry = ''' + @DestCountry + ''')'
+    end
+    
+    if @DestProvince is not null and @DestProvince <> ''
+    begin
+        set @Sql = @Sql + ' and '
+        set @Sql = @Sql + '(db.ReceiverProvince = ''' + @DestProvince + ''')'
+    end
+
+    if @DestCity is not null and @DestCity <> ''
+    begin
+        set @Sql = @Sql + ' and '
+        set @Sql = @Sql + '(db.ReceiverCity = ''' + @DestCity + ''')'
+    end
+
+    if @OrganId is not null and @OrganId <> ''
+    begin
+        set @Sql = @Sql + ' and '
+        set @Sql = @Sql + '(db.OwnOrganId = ' + @OrganId + ')'
+    end
 
     exec (@Sql)
     
@@ -24652,7 +24701,14 @@ begin
     /*Ð´²Ù×÷ÈÕÖ¾*/
     select @OpName = formatmessage(150525)
     select @OpParams = N'StartTime=' + @StartTime + N',' +
-                       N'EndTime=' + @EndTime 
+                       N'EndTime=' + @EndTime + N',' +
+                       N'CustomerName=' + @CustomerName + N',' +
+                       N'DeliveryNo=' + @DeliveryNo + N',' +
+                       N'CarNo=' + @CarNo + N',' +
+                       N'DestCountry=' + @DestCountry + N',' +
+                       N'DestProvince=' + @DestProvince + N',' +
+                       N'DestCity=' + @DestCity + N',' +
+                       N'OrganId=' + @OrganId 
     
     exec InsertOpLog @OpStaffId,@OpStaffName,@OpName,@OpParams,@OpRet output
     if @OpRet = 1

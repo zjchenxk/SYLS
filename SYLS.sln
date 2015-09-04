@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "需求文档", "需求文档", "{9156BCE2-51AF-47B3-9838-19951C48231A}"
 	ProjectSection(SolutionItems) = preProject
@@ -103,6 +103,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据库设计文档", "�
 		InnoLS_20141003.pdm = InnoLS_20141003.pdm
 		InnoLS_20141209.pdm = InnoLS_20141209.pdm
 		InnoLS_20150118.pdm = InnoLS_20150118.pdm
+		InnoLS_20150904.pdm = InnoLS_20150904.pdm
 		MakeStockDaily.sql = MakeStockDaily.sql
 		Messages.sql = Messages.sql
 		UpgradeSysGroupPermission.sql = UpgradeSysGroupPermission.sql

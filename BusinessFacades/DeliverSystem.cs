@@ -542,11 +542,19 @@ namespace InnoSoft.LS.Business.Facades
         /// </summary>
         /// <param name="strStartTime"></param>
         /// <param name="strEndTime"></param>
+        /// <param name="strCustomerName"></param>
+        /// <param name="strDeliveryNo"></param>
+        /// <param name="strCarNo"></param>
+        /// <param name="strDestCountry"></param>
+        /// <param name="strDestProvince"></param>
+        /// <param name="strDestCity"></param>
+        /// <param name="strOrganId"></param>
         /// <param name="nOpStaffId"></param>
         /// <param name="strOpStaffName"></param>
         /// <param name="strErrText"></param>
         /// <returns></returns>
-        public List<DeliverBill> LoadDeliverBillReceiptsByConditions(string strStartTime, string strEndTime, long nOpStaffId, string strOpStaffName, out string strErrText)
+        public List<DeliverBill> LoadDeliverBillReceiptsByConditions(string strStartTime, string strEndTime, string strCustomerName, string strDeliveryNo,
+            string strCarNo, string strDestCountry, string strDestProvince, string strDestCity, string strOrganId, long nOpStaffId, string strOpStaffName, out string strErrText)
         {
             try
             {
@@ -557,7 +565,8 @@ namespace InnoSoft.LS.Business.Facades
                 {
                     using (DeliverDAO dao = new DeliverDAO())
                     {
-                        dataResult = dao.LoadDeliverBillReceiptsByConditions(strStartTime, strEndTime, nOpStaffId, strOpStaffName, out strErrText);
+                        dataResult = dao.LoadDeliverBillReceiptsByConditions(strStartTime, strEndTime, strCustomerName, strDeliveryNo, strCarNo, strDestCountry,
+                            strDestProvince, strDestCity, strOrganId, nOpStaffId, strOpStaffName, out strErrText);
                     }
                     transScope.Complete();
                 }

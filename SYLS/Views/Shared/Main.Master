@@ -68,6 +68,7 @@
         * html .ui-autocomplete {
             height: 200px;
         }
+
         .ui-autocomplete-loading {
             background: white url('/Content/redmond/images/ui-anim_basic_16x16.gif') right center no-repeat;
         }
@@ -428,6 +429,16 @@
             };
             //查询送货单回单
             this.searchDeliverBillReceipts = function (action) {
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_StartTime", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_EndTime", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_CustomerName", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_DeliveryNo", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_CarNo", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_DestCountry", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_DestProvince", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_DestCity", "");
+                $.jStorage.set("SearchDeliverBillReceiptsCondition_OrganId", "");
+
                 //检查权限
                 $.get("/Common/LoadAccountPermission", { strFuncId: 3060, strPermission: "AllowOpen" }, function (ret) {
                     if (ret == false) {

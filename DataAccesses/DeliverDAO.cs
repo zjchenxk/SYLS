@@ -558,17 +558,32 @@ namespace InnoSoft.LS.Data.Access
         /// </summary>
         /// <param name="strStartTime"></param>
         /// <param name="strEndTime"></param>
+        /// <param name="strCustomerName"></param>
+        /// <param name="strDeliveryNo"></param>
+        /// <param name="strCarNo"></param>
+        /// <param name="strDestCountry"></param>
+        /// <param name="strDestProvince"></param>
+        /// <param name="strDestCity"></param>
+        /// <param name="strOrganId"></param>
         /// <param name="nOpStaffId"></param>
         /// <param name="strOpStaffName"></param>
         /// <param name="strErrText"></param>
         /// <returns></returns>
-        public List<DeliverBill> LoadDeliverBillReceiptsByConditions(string strStartTime, string strEndTime, long nOpStaffId, string strOpStaffName, out string strErrText)
+        public List<DeliverBill> LoadDeliverBillReceiptsByConditions(string strStartTime, string strEndTime, string strCustomerName, string strDeliveryNo, string strCarNo,
+            string strDestCountry, string strDestProvince, string strDestCity, string strOrganId, long nOpStaffId, string strOpStaffName, out string strErrText)
         {
             //创建存储过程参数
             SqlParameter[] Params =
 				{
-                    MakeParam(STARTTIME_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strStartTime),
-                    MakeParam(ENDTIME_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strEndTime),
+                    MakeParam(STARTTIME_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strStartTime??System.DBNull.Value),
+                    MakeParam(ENDTIME_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strEndTime??System.DBNull.Value),
+                    MakeParam(CUSTOMERNAME_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strCustomerName??System.DBNull.Value),
+                    MakeParam(DELIVERYNO_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strDeliveryNo??System.DBNull.Value),
+                    MakeParam(CARNO_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strCarNo??System.DBNull.Value),
+                    MakeParam(DESTCOUNTRY_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strDestCountry??System.DBNull.Value),
+                    MakeParam(DESTPROVINCE_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strDestProvince??System.DBNull.Value),
+                    MakeParam(DESTCITY_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strDestCity??System.DBNull.Value),
+                    MakeParam(ORGANID_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strOrganId??System.DBNull.Value),
                     MakeParam(OPSTAFFID_PARAM, SqlDbType.BigInt, 8, ParameterDirection.Input, (object)nOpStaffId),
                     MakeParam(OPSTAFFNAME_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strOpStaffName)
 				};
