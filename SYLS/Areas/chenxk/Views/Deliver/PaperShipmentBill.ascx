@@ -222,7 +222,7 @@
                         <tr>
                             <td colspan="2" valign="middle" style="font-size: 10pt;">
                                 <div style="width: 500px;">
-                                    <%: InnoSoft.LS.Resources.Labels.ReceiverAddress + ":" + ((bill.ReceiveType == InnoSoft.LS.Resources.Options.PickUpSelf || bill.OutType == InnoSoft.LS.Resources.Options.AllocateGoods)? "" : (bill.ReceiverCity + bill.ReceiverAddress)) %>
+                                    <%: InnoSoft.LS.Resources.Labels.ReceiverAddress + ":" + (bill.OutType == InnoSoft.LS.Resources.Options.AllocateGoods? "" : (bill.ReceiverCity + bill.ReceiverAddress)) %>
                                 </div>
                             </td>
                             <td valign="middle" style="font-size: 10pt;">
