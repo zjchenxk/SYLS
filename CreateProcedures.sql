@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  InnoLS                                       */
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     2015/9/4 11:20:33                            */
+/* Created on:     10/3/2015 9:29:01 PM                         */
 /*==============================================================*/
 
 
@@ -28601,7 +28601,7 @@ begin
                 from 
                     Stock '
         
-            set @WhereSql1 = '(DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql1 = '(isnull(DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @CustomerName is not null and @CustomerName <> ''
             begin
@@ -28667,7 +28667,7 @@ begin
                     StockDaily sd join 
                     Stock s on sd.StockId = s.Id '
         
-            set @WhereSql2 = '(s.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql2 = '(isnull(s.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -28739,7 +28739,7 @@ begin
                     EnterWarehouseBillGoods g join 
                     EnterWarehouseBill b on g.EnterWarehouseBillId = b.Id '
         
-            set @WhereSql3 = '(b.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql3 = '(isnull(b.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -28816,7 +28816,7 @@ begin
                     MoveWarehouseBillGoods g join 
                     MoveWarehouseBill b on g.MoveWarehouseBillId = b.Id '
             
-            set @WhereSql3 = '(g.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql3 = '(isnull(g.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -28929,7 +28929,7 @@ begin
                     OutWarehouseBillGoods g join 
                     OutWarehouseBill b on g.OutWarehouseBillId = b.Id '
         
-            set @WhereSql4 = '(g.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql4 = '(isnull(g.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29006,7 +29006,7 @@ begin
                     MoveWarehouseBillGoods g join 
                     MoveWarehouseBill b on g.MoveWarehouseBillId = b.Id '
             
-            set @WhereSql4 = '(g.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql4 = '(isnull(g.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29120,7 +29120,7 @@ begin
                     StockDaily sd join 
                     Stock s on sd.StockId = s.Id '
         
-            set @WhereSql5 = '(s.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql5 = '(isnull(s.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @EndTime is not null and @EndTime <> ''
             begin
@@ -29190,7 +29190,7 @@ begin
                 from 
                     Stock s '
         
-            set @WhereSql5 = '(s.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql5 = '(isnull(s.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @CustomerName is not null and @CustomerName <> ''
             begin
@@ -29256,7 +29256,7 @@ begin
                     EnterWarehouseBillGoods g join 
                     EnterWarehouseBill b on g.EnterWarehouseBillId = b.Id '
         
-            set @WhereSql6 = '(b.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.EnterType = ''' + formatmessage(150276) + ''')'
+            set @WhereSql6 = '(isnull(b.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.EnterType = ''' + formatmessage(150276) + ''')'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29334,7 +29334,7 @@ begin
                     OutWarehouseBillGoods g join 
                     OutWarehouseBill b on g.OutWarehouseBillId = b.Id '
         
-            set @WhereSql7 = '(g.DeliveryNo not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.OutType = ''' + formatmessage(150306) + ''')'
+            set @WhereSql7 = '(isnull(g.DeliveryNo,'''') not in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.OutType = ''' + formatmessage(150306) + ''')'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29410,7 +29410,7 @@ begin
                 from 
                     Stock '
         
-            set @WhereSql1 = '(DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql1 = '(isnull(DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @CustomerName is not null and @CustomerName <> ''
             begin
@@ -29476,7 +29476,7 @@ begin
                     StockDaily sd join 
                     Stock s on sd.StockId = s.Id '
         
-            set @WhereSql2 = '(s.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql2 = '(isnull(s.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29548,7 +29548,7 @@ begin
                     EnterWarehouseBillGoods g join 
                     EnterWarehouseBill b on g.EnterWarehouseBillId = b.Id '
         
-            set @WhereSql3 = '(b.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql3 = '(isnull(b.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29625,7 +29625,7 @@ begin
                     MoveWarehouseBillGoods g join 
                     EnterWarehouseBill b on g.MoveWarehouseBillId = b.Id '
             
-            set @WhereSql3 = '(g.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql3 = '(isnull(g.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29738,7 +29738,7 @@ begin
                     OutWarehouseBillGoods g join 
                     OutWarehouseBill b on g.OutWarehouseBillId = b.Id '
         
-            set @WhereSql4 = '(g.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql4 = '(isnull(g.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29815,7 +29815,7 @@ begin
                     MoveWarehouseBillGoods g join 
                     EnterWarehouseBill b on g.MoveWarehouseBillId = b.Id '
             
-            set @WhereSql4 = '(g.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql4 = '(isnull(g.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -29929,7 +29929,7 @@ begin
                     StockDaily sd join 
                     Stock s on sd.StockId = s.Id '
         
-            set @WhereSql5 = '(s.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql5 = '(isnull(s.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @EndTime is not null and @EndTime <> ''
             begin
@@ -29999,7 +29999,7 @@ begin
                 from 
                     Stock s '
         
-            set @WhereSql5 = '(s.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
+            set @WhereSql5 = '(isnull(s.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1))'
         
             if @CustomerName is not null and @CustomerName <> ''
             begin
@@ -30065,7 +30065,7 @@ begin
                     EnterWarehouseBillGoods g join 
                     EnterWarehouseBill b on g.EnterWarehouseBillId = b.Id '
         
-            set @WhereSql6 = '(b.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.EnterType = ''' + formatmessage(150276) + ''')'
+            set @WhereSql6 = '(isnull(b.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.EnterType = ''' + formatmessage(150276) + ''')'
         
             if @StartTime is not null and @StartTime <> ''
             begin
@@ -30143,7 +30143,7 @@ begin
                     OutWarehouseBillGoods g join 
                     OutWarehouseBill b on g.OutWarehouseBillId = b.Id '
         
-            set @WhereSql7 = '(g.DeliveryNo in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.OutType = ''' + formatmessage(150306) + ''')'
+            set @WhereSql7 = '(isnull(g.DeliveryNo,'''') in (select DeliveryNo from DeliverPlan where IsConsigning = 1 union select DeliveryNo from EnterWarehouseBill where IsConsigning = 1)) and (b.OutType = ''' + formatmessage(150306) + ''')'
         
             if @StartTime is not null and @StartTime <> ''
             begin
