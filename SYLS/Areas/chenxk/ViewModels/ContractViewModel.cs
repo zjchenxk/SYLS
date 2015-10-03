@@ -77,7 +77,7 @@ namespace SYLS.Areas.chenxk.ViewModels
         [Required]
         [StringLength(20)]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^(13[0-9]|14[7]|15[0-9]|18[0-9])\d{8}$", ErrorMessageResourceName = "NotValidMobileTel", ErrorMessageResourceType = typeof(InnoSoft.LS.Resources.Strings))]
+        [RegularExpression(@"^(13|14|15|17|18)[0-9]{9}$", ErrorMessageResourceName = "NotValidMobileTel", ErrorMessageResourceType = typeof(InnoSoft.LS.Resources.Strings))]
         [Display(Name = "MobileTel", ResourceType = typeof(InnoSoft.LS.Resources.Labels))]
         public string DriverMobileTel { get; set; }
 

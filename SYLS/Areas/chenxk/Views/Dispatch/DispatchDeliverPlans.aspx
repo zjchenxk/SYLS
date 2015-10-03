@@ -99,37 +99,37 @@
                 }
             };
             //查看发货计划详细信息
-            this.viewDeliverPlanDetails = function (rowid) {
-                var data = $("#grid2").jqGrid("getRowData", rowid);
-                if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.PaperPlan %>" || data.PlanType == "<%: InnoSoft.LS.Resources.Options.NotDeliverPaperPlan %>") {
-                    location.replace("/chenxk/Plan/ViewPaperPlanDetails/" + rowid);
-                }
-                else if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.CanPlan %>" || data.PlanType == "<%: InnoSoft.LS.Resources.Options.NotDeliverCanPlan %>") {
-                    location.replace("/chenxk/Plan/ViewCanPlanDetails/" + rowid);
-                }
-                else if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.NoodlePlan %>") {
+        this.viewDeliverPlanDetails = function (rowid) {
+            var data = $("#grid2").jqGrid("getRowData", rowid);
+            if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.PaperPlan %>" || data.PlanType == "<%: InnoSoft.LS.Resources.Options.NotDeliverPaperPlan %>") {
+                location.replace("/chenxk/Plan/ViewPaperPlanDetails/" + rowid);
+            }
+            else if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.CanPlan %>" || data.PlanType == "<%: InnoSoft.LS.Resources.Options.NotDeliverCanPlan %>") {
+                location.replace("/chenxk/Plan/ViewCanPlanDetails/" + rowid);
+            }
+            else if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.NoodlePlan %>") {
                     location.replace("/chenxk/Plan/ViewNoodlePlanDetails/" + rowid);
                 }
                 else {
                     location.replace("/chenxk/Plan/ViewOtherPlanDetails/" + rowid);
                 }
-            };
+        };
             //调度计划
-            this.dispatch = function () {
-                //检查权限
-                $.get("/Common/LoadAccountPermission", { strFuncId: 2010, strPermission: "AllowDispatch" }, function (ret) {
-                    if (ret == false) {
-                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+        this.dispatch = function () {
+            //检查权限
+            $.get("/Common/LoadAccountPermission", { strFuncId: 2010, strPermission: "AllowDispatch" }, function (ret) {
+                if (ret == false) {
+                    alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                    return;
+                }
+
+                if (objMain.objWorkspace.objContent.selectedPlanId == null) {
+                    alert("<%: InnoSoft.LS.Resources.Strings.NotSelectedPlan %>");
                         return;
                     }
 
-                    if (objMain.objWorkspace.objContent.selectedPlanId == null) {
-                        alert("<%: InnoSoft.LS.Resources.Strings.NotSelectedPlan %>");
-                        return;
-                    }
-
-                    var data = $("#grid1").jqGrid("getRowData", objMain.objWorkspace.objContent.selectedPlanId);
-                    if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.PaperPlan %>") {
+                var data = $("#grid1").jqGrid("getRowData", objMain.objWorkspace.objContent.selectedPlanId);
+                if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.PaperPlan %>") {
                         location.replace("/chenxk/Dispatch/DispatchPaperPlan/" + objMain.objWorkspace.objContent.selectedPlanId);
                     }
                     else if (data.PlanType == "<%: InnoSoft.LS.Resources.Options.NotDeliverPaperPlan %>") {
@@ -147,27 +147,27 @@
                     else {
                         location.replace("/chenxk/Dispatch/DispatchOtherPlan/" + objMain.objWorkspace.objContent.selectedPlanId);
                     }
-                }, "text json").error(function (xhr, status, error) {
-                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
-                });
-            };
+            }, "text json").error(function (xhr, status, error) {
+                if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+            });
+        };
             //取消计划
-            this.cancel = function (action) {
-                //检查权限
-                $.get("/Common/LoadAccountPermission", { strFuncId: 2010, strPermission: "AllowCancel" }, function (ret) {
-                    if (ret == false) {
-                        alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+    this.cancel = function (action) {
+        //检查权限
+        $.get("/Common/LoadAccountPermission", { strFuncId: 2010, strPermission: "AllowCancel" }, function (ret) {
+            if (ret == false) {
+                alert("<%: InnoSoft.LS.Resources.Strings.NoPermission %>");
+                return;
+            }
+
+            if (objMain.objWorkspace.objContent.selectedPlanId == null) {
+                alert("<%: InnoSoft.LS.Resources.Strings.NotSelectedPlan %>");
                         return;
                     }
 
-                    if (objMain.objWorkspace.objContent.selectedPlanId == null) {
-                        alert("<%: InnoSoft.LS.Resources.Strings.NotSelectedPlan %>");
-                        return;
-                    }
-
-                    if (confirm("<%: InnoSoft.LS.Resources.Strings.CancelPlanConfirm %>") == true) {
-                        $.blockUI({
-                            message: '<h1><img src="<%=Url.Content("~/Content/busy.gif")%>" /><%: InnoSoft.LS.Resources.Strings.PleaseWait %></h1>',
+            if (confirm("<%: InnoSoft.LS.Resources.Strings.CancelPlanConfirm %>") == true) {
+                $.blockUI({
+                    message: '<h1><img src="<%=Url.Content("~/Content/busy.gif")%>" /><%: InnoSoft.LS.Resources.Strings.PleaseWait %></h1>',
                             css: {
                                 border: 'none',
                                 padding: '15px',
@@ -190,10 +190,10 @@
                             }
                         });
                     }
-                }, "text json").error(function (xhr, status, error) {
-                    if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
-                });
-            };
+        }, "text json").error(function (xhr, status, error) {
+            if (xhr != null && xhr != undefined && xhr.responseText != null && xhr.responseText != "") alert(xhr.responseText);
+        });
+    };
             //退回计划
             this.returnModify = function (rowid) {
                 if (confirm("<%: InnoSoft.LS.Resources.Strings.ReturnModifyPlanConfirm %>") == true) {
@@ -272,7 +272,7 @@
                     { name: "DeliveryNo", index: "DeliveryNo", width: 120, align: "center" },
                     { name: "ReceiverName", index: "ReceiverName", width: 200 },
                     { name: "ReceiverCity", index: "ReceiverCity", width: 60, align: "center" },
-                    { name: "Warehouse", index: "Warehouse", width: 80, align: "center", hidden: true },
+                    { name: "Warehouse", index: "Warehouse", width: 80, align: "center" },
                     { name: "ArrivalTime", index: "ArrivalTime", width: 80, align: "center" },
                     { name: "PlanType", index: "PlanType", width: 60, align: "center" },
                     { name: "BalanceTunnages", index: "BalanceTunnages", width: 100, align: "center" },
@@ -280,9 +280,9 @@
                     { name: "CreateTime", index: "CreateTime", width: 80, align: "center" },
                     { name: "ReceiveType", index: "ReceiveType", width: 60, align: "center", hidden: true },
                     { name: "CarNo", index: "CarNo", width: 80, align: "center", hidden: true },
-                    { name: "Remark", index: "Remark", width: 300, hidden: true },
+                    { name: "Remark", index: "Remark", width: 300 },
                     { name: "Actions", index: "Actions", width: 80, align: "center", sortable: false },
-                    { name: "Actions2", index: "Actions2", width: 100, align: "center", sortable: false}],
+                    { name: "Actions2", index: "Actions2", width: 100, align: "center", sortable: false }],
                 rowNum: 500,
                 rowList: [50, 100, 500, 1000, 5000],
                 sortname: "CreateTime",
@@ -348,7 +348,7 @@
                     { name: "TotalTunnages", index: "TotalTunnages", width: 100, align: "center" },
                     { name: "TotalPiles", index: "TotalPiles", width: 100, align: "center" },
                     { name: "CreateTime", index: "CreateTime", width: 80, align: "center", hidden: true },
-                    { name: "Actions", index: "Actions", width: 80, align: "center", sortable: false}],
+                    { name: "Actions", index: "Actions", width: 80, align: "center", sortable: false }],
                 rowNum: 500,
                 rowList: [50, 100, 500, 1000, 5000],
                 sortname: "CreateTime",
@@ -410,7 +410,7 @@
                         });
 
                         //重新加载表格
-                        $("#grid1").trigger("reloadGrid", [{ page: 1}]);
+                        $("#grid1").trigger("reloadGrid", [{ page: 1 }]);
 
                         $(this).dialog("close");
 
