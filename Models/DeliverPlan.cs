@@ -283,5 +283,9 @@ namespace InnoSoft.LS.Models
         /// 承运单位结算标志
         /// </summary>
         public bool IsCarrierTransportChargesSettled { get; set; }
+        /// <summary>
+        /// 总记录数
+        /// </summary>
+        public int TotalRows { get; set; }
     }
 }

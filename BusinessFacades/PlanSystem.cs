@@ -458,7 +458,7 @@ namespace InnoSoft.LS.Business.Facades
         /// <param name="strOpStaffName"></param>
         /// <param name="strErrText"></param>
         /// <returns></returns>
-        public List<DeliverPlan> LoadForeignDeliverPlans(long nOpStaffId, string strOpStaffName, out string strErrText)
+        public List<DeliverPlan> LoadForeignDeliverPlans(int nPageIndex, int nRowCount, long nOpStaffId, string strOpStaffName, out string strErrText)
         {
             try
             {
@@ -469,7 +469,7 @@ namespace InnoSoft.LS.Business.Facades
                 {
                     using (PlanDAO dao = new PlanDAO())
                     {
-                        dataResult = dao.LoadForeignDeliverPlans(nOpStaffId, strOpStaffName, out strErrText);
+                        dataResult = dao.LoadForeignDeliverPlans(nPageIndex, nRowCount, nOpStaffId, strOpStaffName, out strErrText);
                     }
                     transScope.Complete();
                 }

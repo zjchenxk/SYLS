@@ -493,11 +493,13 @@ namespace InnoSoft.LS.Data.Access
         /// <param name="strOpStaffName"></param>
         /// <param name="strErrText"></param>
         /// <returns></returns>
-        public List<DeliverPlan> LoadForeignDeliverPlans(long nOpStaffId, string strOpStaffName, out string strErrText)
+        public List<DeliverPlan> LoadForeignDeliverPlans(int nPageIndex, int nRowCount, long nOpStaffId, string strOpStaffName, out string strErrText)
         {
             //创建存储过程参数
             SqlParameter[] Params =
 				{
+                    MakeParam("@PageIndex", SqlDbType.Int, 4, ParameterDirection.Input, (object)nPageIndex),
+                    MakeParam("@RowCount", SqlDbType.Int, 4, ParameterDirection.Input, (object)nRowCount),
                     MakeParam(OPSTAFFID_PARAM, SqlDbType.BigInt, 8, ParameterDirection.Input, (object)nOpStaffId),
                     MakeParam(OPSTAFFNAME_PARAM, SqlDbType.NVarChar, 50, ParameterDirection.Input, (object)strOpStaffName)
 				};

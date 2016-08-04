@@ -28,6 +28,8 @@ namespace SYLS.Areas.chenxk.Controllers
         {
             string strErrText;
 
+            ViewData["Chenxk_ControllerTime"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
             //生成组织部门下拉列表项
             OrganizationSystem organ = new OrganizationSystem();
             List<Organization> listOrganization = organ.LoadOrganizations(LoginAccountId, LoginStaffName, out strErrText);
@@ -203,22 +205,22 @@ namespace SYLS.Areas.chenxk.Controllers
 
             //读取数据
             PlanSystem plan = new PlanSystem();
-            List<DeliverPlan> listPlan = plan.LoadForeignDeliverPlans(LoginAccountId, LoginStaffName, out strErrText);
+            List<DeliverPlan> listPlan = plan.LoadForeignDeliverPlans(page, rows, LoginAccountId, LoginStaffName, out strErrText);
             if (listPlan == null)
             {
                 throw new Exception(strErrText);
             }
 
             //提取当前页面数据
-            int nTotalRows = listPlan.Count;
+            int nTotalRows = listPlan.Count > 0 ? listPlan[0].TotalRows : 0;
             int nPageIndex = page;
             int nPageSize = rows;
             int nTotalPages = nTotalRows / nPageSize;
             if (nTotalRows % nPageSize > 0)
                 nTotalPages++;
 
-            string sortExpression = (sidx ?? "CreateTime") + " " + (sord ?? "DESC");
-            var data = listPlan.OrderBy(sortExpression).Skip((nPageIndex - 1) * nPageSize).Take(nPageSize).ToList();
+            //string sortExpression = (sidx ?? "CreateTime") + " " + (sord ?? "DESC");
+            //var data = listPlan.OrderBy(sortExpression).Skip((nPageIndex - 1) * nPageSize).Take(nPageSize).ToList();
 
             //生成表格数据
             var ret = new
@@ -227,7 +229,7 @@ namespace SYLS.Areas.chenxk.Controllers
                 page = nPageIndex,
                 records = nTotalRows,
                 rows = (
-                      from p in data
+                      from p in listPlan
                       select new
                       {
                           id = p.Id,
@@ -252,8 +254,8 @@ namespace SYLS.Areas.chenxk.Controllers
                 userdata = new
                 {
                     PlanNo = InnoSoft.LS.Resources.Labels.Total,
-                    TotalTunnages = data.Sum(s => s.TotalTunnages),
-                    TotalPiles = data.Sum(s => s.TotalPiles)
+                    TotalTunnages = listPlan.Sum(s => s.TotalTunnages),
+                    TotalPiles = listPlan.Sum(s => s.TotalPiles)
                 }
             };
             return Json(ret, JsonRequestBehavior.AllowGet);

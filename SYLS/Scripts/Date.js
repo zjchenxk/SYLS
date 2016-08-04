@@ -344,3 +344,25 @@ function parseDate(val) {
     }
     return null;
 }
+
+// ------------------------------------------------------------------
+// 比较日期差
+//
+//interval ：D 表示查询精确到天数的之差
+//interval ：H 表示查询精确到小时之差
+//interval ：M 表示查询精确到分钟之差
+//interval ：S 表示查询精确到秒之差
+//interval ：T 表示查询精确到毫秒之差
+// ------------------------------------------------------------------
+function dateDiff(interval, date1, date2) {
+    var objInterval = { 'D': 1000 * 60 * 60 * 24, 'H': 1000 * 60 * 60, 'M': 1000 * 60, 'S': 1000, 'T': 1 };
+    interval = interval.toUpperCase();
+    var dt1 = Date.parse(date1.replace(/-/g, '/'));
+    var dt2 = Date.parse(date2.replace(/-/g, '/'));
+    try {
+        return Math.round((dt2 - dt1) / eval('(objInterval.' + interval + ')'));
+    }
+    catch (e) {
+        return e.message;
+    }
+}

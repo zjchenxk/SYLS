@@ -310,6 +310,9 @@
                 $.jStorage.set("SearchDispatchPlanCondition_Warehouse", "");
                 $.jStorage.set("SearchDispatchPlanCondition_ArrivalTime", "");
 
+                //记录请求时间
+                $.jStorage.set("DispatchDeliverPlans_RequestTime", formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"));
+
                 //检查权限
                 $.get("/Common/LoadAccountPermission", { strFuncId: 2010, strPermission: "AllowOpen" }, function (ret) {
                     if (ret == false) {
@@ -1386,7 +1389,7 @@
 
         //页面初始化
         $(document).ready(function () {
-            $.ajaxSetup({ cache: false });
+            $.ajaxSetup({ cache: false, aysnc: true });
 
             jQuery.extend($.fn.fmatter, {
                 myNumberFmatter: function (cellvalue, options, rowdata) {
