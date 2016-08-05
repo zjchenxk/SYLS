@@ -1160,10 +1160,13 @@ namespace InnoSoft.LS.Data.Access
                 m_strInfoMessage = string.Empty;
 
                 dr = command.ExecuteReader();
+
+                DynamicBuilder<T> builder = DynamicBuilder<T>.CreateBuilder(dr);
+
                 while (dr.Read())
                 {
                     T model = default(T);
-                    model = DynamicBuilder<T>.CreateBuilder(dr).Build(dr);
+                    model = builder.Build(dr);
                     models.Add(model);
                 }
 
@@ -1222,10 +1225,13 @@ namespace InnoSoft.LS.Data.Access
                 m_strInfoMessage = string.Empty;
 
                 dr = command.ExecuteReader();
+
+                DynamicBuilder<T> builder = DynamicBuilder<T>.CreateBuilder(dr);
+
                 while (dr.Read())
                 {
                     T model = default(T);
-                    model = DynamicBuilder<T>.CreateBuilder(dr).Build(dr);
+                    model = builder.Build(dr);
                     models.Add(model);
                 }
 
@@ -1385,7 +1391,23 @@ namespace InnoSoft.LS.Data.Access
                     generator.Emit(OpCodes.Ldarg_0);
                     generator.Emit(OpCodes.Ldc_I4, i);
                     generator.Emit(OpCodes.Callvirt, getValueMethod);//调用get_Item方法
-                    generator.Emit(OpCodes.Unbox_Any, dataRecord.GetFieldType(i));
+
+                    Type memberType = propertyInfo.PropertyType;
+                    Type nullUnderlyingType = Nullable.GetUnderlyingType(memberType);
+                    Type unboxType = nullUnderlyingType != null ? nullUnderlyingType : memberType;
+
+                    if (unboxType == typeof(byte[]) || unboxType == typeof(string))
+                    {
+                        generator.Emit(OpCodes.Castclass, memberType);
+                    }
+                    else
+                    {
+                        generator.Emit(OpCodes.Unbox_Any, dataRecord.GetFieldType(i));
+                        if (nullUnderlyingType != null)
+                        {
+                            generator.Emit(OpCodes.Newobj, memberType.GetConstructor(new[] { nullUnderlyingType }));
+                        }
+                    }
                     generator.Emit(OpCodes.Callvirt, propertyInfo.GetSetMethod());//给该属性设置对应值
 
                     generator.MarkLabel(endIfLabel);

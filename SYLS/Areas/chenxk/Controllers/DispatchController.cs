@@ -130,6 +130,8 @@ namespace SYLS.Areas.chenxk.Controllers
         [Authorize]
         public JsonResult LoadDispatchDeliverPlansGrid(string sidx, string sord, int page, int rows, string organId, string customerName, string shipmentNo, string deliveryNo, string receiverName, string destCountry, string destProvince, string destCity, string warehouse, string arrivalTime, string carNo)
         {
+            DateTime t1 = DateTime.Now;
+
             //读取数据
             string strErrText;
             PlanSystem plan = new PlanSystem();
@@ -138,6 +140,10 @@ namespace SYLS.Areas.chenxk.Controllers
             {
                 throw new Exception(strErrText);
             }
+
+            DateTime t2 = DateTime.Now;
+
+            long t1_t2 = ((TimeSpan)(t2 - t1)).Seconds;
 
             //提取当前页面数据
             int nTotalRows = listPlan.Count;
@@ -187,6 +193,7 @@ namespace SYLS.Areas.chenxk.Controllers
                     BalancePiles = data.Sum(s => s.BalancePiles)
                 }
             };
+
             return Json(ret, JsonRequestBehavior.AllowGet);
         }
 
@@ -201,6 +208,8 @@ namespace SYLS.Areas.chenxk.Controllers
         [Authorize]
         public JsonResult LoadForeignDeliverPlansGrid(string sidx, string sord, int page, int rows)
         {
+            DateTime t1 = DateTime.Now;
+
             string strErrText;
 
             //读取数据
@@ -210,6 +219,10 @@ namespace SYLS.Areas.chenxk.Controllers
             {
                 throw new Exception(strErrText);
             }
+
+            DateTime t2 = DateTime.Now;
+
+            long t1_t2 = ((TimeSpan)(t2 - t1)).Seconds;
 
             //提取当前页面数据
             int nTotalRows = listPlan.Count > 0 ? listPlan[0].TotalRows : 0;
@@ -258,6 +271,7 @@ namespace SYLS.Areas.chenxk.Controllers
                     TotalPiles = listPlan.Sum(s => s.TotalPiles)
                 }
             };
+
             return Json(ret, JsonRequestBehavior.AllowGet);
         }
 
