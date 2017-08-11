@@ -2178,8 +2178,9 @@ namespace SYLS.Areas.chenxk.Controllers
             if (nTotalRows % nPageSize > 0)
                 nTotalPages++;
 
-            string sortExpression = (sidx ?? "Id") + " " + (sord ?? "ASC");
-            var data = listPrice.OrderBy(sortExpression).Skip((nPageIndex - 1) * nPageSize).Take(nPageSize).ToList();
+            //string sortExpression = (sidx ?? "Id") + " " + (sord ?? "ASC");
+            //var data = listPrice.OrderBy(sortExpression).Skip((nPageIndex - 1) * nPageSize).Take(nPageSize).ToList();
+            var data = listPrice.Skip((nPageIndex - 1) * nPageSize).Take(nPageSize).ToList();
 
             //生成表格数据
             var ret = new

@@ -233,6 +233,7 @@
             //调整工作内容布局
             this.resizeContent = function () {
                 $("#grid1").jqGrid("setGridWidth", $("fieldset:first").width() - 2);
+                $("#grid1").jqGrid("setGridHeight", 400);
                 $("#grid2").jqGrid("setGridWidth", $("fieldset:first").width() - 2);
                 $("#grid3").jqGrid("setGridWidth", $("fieldset:first").width() - 2);
             };
@@ -546,8 +547,8 @@
                     { name: "CarType", index: "CarType", width: 60, align: "center" },
                     { name: "TransportPrice", index: "TransportPrice", width: 100, align: "right" },
                     { name: "RiverCrossingCharges", index: "RiverCrossingCharges", width: 100, align: "right", formatter: "currency", formatoptions: { thousandsSeparator: "," } }],
-                rowNum: 500,
-                rowList: [50, 100, 500, 1000, 5000],
+                rowNum: 2000,
+                rowList: [1000, 2000, 5000],
                 sortname: "",
                 sortorder: "asc",
                 pager: "#pager1",

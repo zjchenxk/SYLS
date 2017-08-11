@@ -14,7 +14,7 @@ namespace SYLS.Helper
         private string[] arrTokens = null;
         private string[] arrPostFix = null;
         private string dtFormat = "dd/MM/yyyy";
-        private string lstAlpha = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,uv,w,x,y,z";
+        private string lstAlpha = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
         private string lstDigits = "0,1,2,3,4,5,6,7,8,9";
         private string lstArithOps = "^,*,/,%,+,-";
         private string lstLogicOps = "!,&,|";
